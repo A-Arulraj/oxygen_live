@@ -174,8 +174,7 @@
                                                     echo "<li>GST: <span>" . $gstAmount . "</span></li>";
                                                 } else {
                                                     echo "Invalid input data. Please check the values of price, qty, and gst.";
-                                                }
-                                            
+                                                }                                            
 
                                                 ?>
 

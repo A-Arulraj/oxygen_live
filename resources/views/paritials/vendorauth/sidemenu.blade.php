@@ -21,14 +21,14 @@
                         data-feather="home"></i><span>Dasshboard</span></a></li>
 
                 {{-- category --}}
-                <li><a class="sidebar-header" href="#"><i data-feather="box"></i> <span>Category</span><i
+                <!-- <li><a class="sidebar-header" href="#"><i data-feather="box"></i> <span>Category</span><i
                     class="fa fa-angle-right pull-right"></i></a>
                     <ul class="sidebar-submenu">
                         <li><a href="{{ route('vendorcategory.main.index') }}"><i class="fa fa-circle"></i>Main Category</a></li>
                         <li><a href="{{ route('vendorcategory.index') }}"><i class="fa fa-circle"></i>Category</a></li>
                         <li><a href="{{ route('vendorcategory.sub.index') }}"><i class="fa fa-circle"></i>Sub Category</a></li>
                     </ul>
-                </li>
+                </li> --> 
             
             
             
@@ -36,12 +36,12 @@
                         class="fa fa-angle-right pull-right"></i></a>
                 <ul class="sidebar-submenu">
                     <li><a href="{{ route('vendorproductscreate') }}"><i class="fa fa-circle"></i>Add Product</a></li>
-                   <li><a href=" {{ route('vendorattribute.master.index') }}"><i class="fa fa-circle"></i> Attributes</a>
-                    </li>
+                   <!-- <li><a href=" {{ route('vendorattribute.master.index') }}"><i class="fa fa-circle"></i> Attributes</a>
+                    </li> -->
                 
-                    <li><a href="{{ route('vendorproduct.specification.index') }}"><i class="fa fa-circle"></i>
+                    <!-- <li><a href="{{ route('vendorproduct.specification.index') }}"><i class="fa fa-circle"></i>
                             Specification</a>
-                    </li>
+                    </li> -->   
 
                     {{--   <li><a href="{{ route('product.specification.index') }}"><i class="fa fa-circle"></i>
                         Offers</a>              

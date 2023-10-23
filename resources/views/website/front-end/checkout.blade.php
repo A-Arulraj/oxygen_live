@@ -1,4 +1,5 @@
 
+
 @include('website.front-end.newhead')
  
 {{-- @include('website.front-end.newheader') --}}
@@ -162,11 +163,30 @@
                                             @endphp
 
                                             <li>{{ $details['name'] }} × {{ $details['qty'] }} <span>Rs {{ $details['price'] * $details['qty'] }}</span></li>
-                                            <li>GST: <span>{{ $details['price'] * $details['qty']* $details['gst']/100}}</span></li>
-                                            <!--<li>Total: <span>Rs {{ $details['price'] * $details['qty']* $details['gst']/100}}</span></li>-->
+                                            
+                                              <?php                                        
+                                                $price = floatval($details['price']);
+                                                $qty = intval($details['qty']);
+                                                $gst = floatval($details['gst']);
+
+                                                if (is_numeric($price) && is_numeric($qty) && is_numeric($gst)) {
+                                                    $gstAmount = $price * $qty * $gst / 100;
+                                                    echo "<li>GST: <span>" . $gstAmount . "</span></li>";
+                                                } else {
+                                                    echo "Invalid input data. Please check the values of price, qty, and gst.";
+                                                }
+                                            
+
+                                                ?>
+
+
+
+
+                                            {{-- <li>GST: <span>{{ $details['price'] * $details['qty']* $details['gst']/100}}</span></li> --}}
+                                            {{-- <li>Total: <span>Rs {{ $details['price'] * $details['qty']* $details['gst']/100}}</span></li> --}}
                                             @php
                                             $total1 = $details['price'] * $details['qty'];
-                                            $gsttot = $details['price'] * $details['qty'] * $details['gst']/100;
+                                            $gsttot = $price * $qty * $gst / 100;
                                             $gst = $details['gst'];
                                             $gtot = $total1 - $gsttot;
                                             $gtot1 += $gtot + $gsttot;
@@ -222,14 +242,14 @@
                                             <li>
                                                 
                                                 <label for="html">Discount</label>
-                                                <span class="count"><input type="text" style ="border: 0px solid; color:grey" class="discount1" id="discount1" value="0"></span>
+                                                <span class="count"><input type="text" style ="border: 0px solid; color:grey" class="discount1" name="discount1" id="discount1" value="0"></span>
                                                 {{-- <span class="count"></span> --}}
                                                 </li>
                                         </ul>
                                         <ul class="total">
                                             <li>Total 
                                                 
-                                                <span class="count1" id="count1"><input type="text" style ="border: 0px solid; color:grey" class="count1" id="count1" value="Rs {{ $gtot1 +  $shipping}}"><span>
+                                                <span class="count1"><input type="text" style ="border: 0px solid; color:grey" class="count1" id="count1" value="Rs {{ $gtot1 +  $shipping}}"><span>
                                                 {{-- <span class="count" id ="count">Rs {{ $total +  $shipping }}</span>  --}}
                                             </li>
                                         </ul>
@@ -278,7 +298,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                         <input type="hidden" value="{{$gtot1}}" name="total" id="total">
+                                        <input type="hidden" value="{{$gtot1}}" name="total" id="total">
                                         <input type="hidden" value="{{$total1}}" name="total1" id="total1">
                                         <input type="hidden" value="{{$shipping}}" name="shipping" id="shipping">
                                         <input type="hidden" value="{{ $gtot1 +  $shipping }}" name="grandtotal" id="grandtotal">
@@ -309,7 +329,7 @@
            
             var gtotal = $("#grandtotal").val();
             var discount = $("#discount1").val();
-         alert(discount);
+            //alert(discount);
             var netamt = gtotal- discount;
             var dcode =  $("#discountCode").val();
            
@@ -326,30 +346,36 @@
 
             dataType: "json",
             success: function (data) {
-                 console.log(data.end_date);
-                 var date = data.end_date;
+                 console.log(data);
+                 var enddate = data.end_date;
+                 var startdate = data.start_date;
               //  var da1 = date.toISOString();
-                // alert(date);
-                 var date1 = new Date();
-                   var da =  date1.toJSON();
-                 console.log(da);
-                // alert(da);
+                // alert(enddate);
+                // alert(startdate);
+                //  var date1 = new Date();
+                //  var da =  date1.toJSON();
+                 const currentDate = new Date();
+
+                const year = currentDate.getFullYear();
+                const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Months are 0-based, so we add 1 and pad with '0' if needed.
+                const day = String(currentDate.getDate()).padStart(2, '0');
+                const hours = String(currentDate.getHours()).padStart(2, '0');
+                const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+                const now = `${year}-${month}-${day}T${hours}:${minutes}`;
+
+               // alert(now);
+
+                //  console.log(da);
+                //  alert(da);
                 var discountamt = data.dis_amt;
-               // alert(discountamt);
-                if(da !== data.end_date)
-                {
-                    $("#discountCode").hide();
-                    $("#btnDiscountAction").hide();
-                    alert('Coupan Expired');
-                     var dis = $("#discount1").val(0);
-                     //alert(dis);
-                     var dis = $("#discount2").val(0);
-                }
-               else{
-                $("#discount1").val(0);
+              //  alert(discountamt);
+                if (now >= startdate && now <= enddate
+                ) {
+
+                    $("#discount1").val(0);
                     $("#discount2").val(0);
             
-               //  alert(discountamt);
+                //  alert(discountamt);
                 // $("#grandtotal").val(netamt);
                 $("#discount1").val(discountamt);
                 $("#discount2").val(discountamt);
@@ -359,23 +385,36 @@
              $("#grandtotal").val(gtotal);
             // alert(dis);
             // exit;
+            alert(discountamt);
              if(isNaN(discountamt)){
                 var netamt1 = gtotal;
-               // alert(netamt1);
-                
+              // alert(netamt1);
+              $("#count1").val(netamt1);
+              $("#discount2").val(discountamt);
              }
               else
               {
                 var netamt1 = gtotal-dis;
-                // alert(netamt1);
                
+                 $("#count1").val(netamt1);
+                 $("#discount2").val(discountamt);
               }
 
             
             //  alert(gtotal);
-                $("#count1").val(netamt1);
+              
             
-            
+             
+                }
+               else{
+
+                $("#discountCode").hide();
+                    $("#btnDiscountAction").hide();
+                    alert('Coupan Expired');
+                     var dis = $("#discount1").val(0);
+                     //alert(dis);
+                     var dis = $("#discount2").val(0);
+             
             }
             },
             error: function (data) {

@@ -171,14 +171,14 @@
                                                 <td class="text-center">
                                                     <?php
                                                        $produ = App\Models\Products\ProductsDetails::where('products_id',$products->product_id)->get(); 
-                                                     
+                                                      
                                                        $produ1=0;
                                                         foreach( $produ as $qty ){
                                                             $sum = $qty['quantity'];
                                                             // print_r(gettype($sum));
                                                              $produ1 += (int)$sum;
                                                         }
-                                                       
+                                                        
                                                     ?>
                                                     <span class="fw-bold">
                                                         <a href="#" data-id={{ $products->id }}
@@ -265,7 +265,7 @@
                                                             </button>
                                                         </form>
                                                     </div>
-                                                </td>
+                                                </td>                                                
                                             </tr>
                                         @endforeach
                                     </tbody>

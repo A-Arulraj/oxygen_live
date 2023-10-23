@@ -870,112 +870,15 @@
                     }                 
                 console.log(files);
                 });
-            // } else {
-            //     alert("Your browser doesn't support to File API")
-            // }
+            
             });
 
-
-            
-                                // $("<div class='col-md-2'><div class=\"img-thumb-wrapper card shadow\">" +
-                                //     "<img class=\"img-thumb\" src=\"" + e.target.result + "\" title=\"" + filename+ "\"/>" +
-                                //     "<input type=\"hidden\" name=\"pimg[]\" value="+files+" multiple accept=\"image/*\"/>"+
-                                //     "<br/><span class=\"remove\">pre view Remove</span>"+
-                                //     "</div></div>").insertAfter("#r"+myid);
-                                // $(".remove").click(function(){
-                                //     $(this).parent(".img-thumb-wrapper").remove();
-                                // });
-                                
                                 
             }
                 console.log(files);
             }
                 
 
-
-
-
-            
-    //image preciew
-    // $("#im1").on("change", function(e) {
-    //         //console.log(e);
-            
-    //         var files = e.target.files,
-    //             filesLength = files.length;
-            
-    //         for (var i = 0; i < filesLength; i++) {
-    //             var f = files[i]
-    //             var fileReader = new FileReader();
-    //             fileReader.onload = (function(e) {
-    //                 var file = e.target;
-                  
-    //                 $("<span class=\"pip\">" +
-    //                     "<img class=\"imageThumb\" src=\"" + e.target.result +
-    //                     "\" title=\"" + file.name + "\"/>" +
-    //                     "<span class=\"remove\">Remove image</span>" +
-    //                     "</span>").insertAfter("#im1");
-    //                 $(".remove").click(function() {
-    //                     $(this).parent(".pip").remove();
-    //                 });
-
-    //             });
-    //             fileReader.readAsDataURL(f);
-    //         }
-    //     });
-
-        // function preview_image() 
-        // {
-        // var total_file=document.getElementById("upload_file").files.length;
-        // for(var i=0;i<total_file;i++)
-        // {
-        // $('#image_preview').append("<img src='"+URL.createObjectURL(event.target.files[i])+"'><br>");
-        // }
-        // }
-
-
-
-
-
-        // Get Attr
-    //        $('#sub_category').on('change', function() {
-    //         let sub_category_id = $(this).find(":selected").attr("id");
-    //         let url = '{{ route('getAttributes') }}?sub_category_id=' + sub_category_id;
-    //         let method = 'GET';
-    //         getAjaxValue(url, method, function(data) {
-
-
-    //             console.log(data);
-                
-
-    //             $('.attrcolor').empty();
-
-    //             let attribute;
-
-    //             $.each(data, function(key, attr) {
-    //                 // alert(JSON.stringify(spec));
-    //                 // alert(attr.attribute_name)
-
-    //                 let options;
-    //                 attribute += ` <div class="col-md-2">${attr.attribute_name}</div>
-    //                             <div class="col-md-2">
-    //                         <select class='form-select form-select-lg text-secondary' name='atttibute_value[]'>
-    //                         <option selected value='' hidden> --Select ${attr.attribute_name}--</option>
-    //                         ${(function fun(array) {
-    //                             for (let index = 0; index < array.length; index++) {
-    //                                 options += `<option value='${array[index]}'> ${array[index]}</option>`;
-    //                             }
-    //                             return options;
-    //                         })(JSON.parse(attr.value))}
-    //                     </select>
-    //                     <input type="hidden" name="specify_attri[]" value="${attr.attribute_name}">
-    //                     </div>`;
-
-
-    //         });
-    //         //  alert(attribute);
-    //         $(".attrcolor").append(attribute);
-    //     });
-    // });
 
 
 
@@ -1007,98 +910,11 @@
                 
                 });
 
-              //  $(".attrcolor").append(elm);
         });
     });
 
-        // Add more attributes
-
-       
-   
-
-
-
-
-    //end
-          
-    //          $('#add_m').on('click', function() {
-    //         let sub_category_id = $(this).find(":selected").attr("id");
-    //         let url = '{{ route('getAttributes') }}?sub_category_id=' + sub_category_id;
-    //         let method = 'GET';
-    //         getAjaxValue(url, method, function(data) {
-
-
-    //             console.log(data);
-                
-              
-    //            // $('.attrcolor').empty();
-
-    //             let attribute;
-
-    //             $.each(data, function(key, attr) {
-    //                 // alert(JSON.stringify(spec));
-    //                 // alert(attr.attribute_name)
-
-    //                 let options;
-    //                 attribute += ` <div class="col-md-2">${attr.attribute_name}</div>
-    //                             <div class="col-md-2">
-    //                         <select class='form-select form-select-lg text-secondary' name='atttibute_value[]'>
-    //                         <option selected value='' hidden> --Select ${attr.attribute_name}--</option>
-    //                         ${(function fun(array) {
-    //                             for (let index = 0; index < array.length; index++) {
-    //                                 options += `<option value='${array[index]}'> ${array[index]}</option>`;
-    //                             }
-    //                             return options;
-    //                         })(JSON.parse(attr.value))}
-    //                     </select>
-    //                     <input type="hidden" name="specify_attri[]" value="${attr.attribute_name}">
-    //                     </div>`;
-
-
-    //         });
-    //         alert(attribute);
-    //        $("#low_stock_limit").append(attribute);
-    //     });
-    // });
-
-    // $('#add_m').on('click', function() {
-    // // $('#sub_category').on('change', function() {
-    //         let sub_category_id = $(this).find(":selected").attr("id");
-    //         let url = '{{ route('getAttributes') }}?sub_category_id=' + sub_category_id;
-    //         let method = 'GET';
-    //         getAjaxValue(url, method, function(data) {
-    //             //alert(JSON.stringify(data))
-    //             let attribute;
-    //             $.each(data, function(key, attr) {
-    //                 // $('#attrcolor').empty();
-    //                 // $('#attrsize').empty();
-                   
-    //                 if(attr.attribute_name == 'color'){
-    //                 const myarr = JSON.parse(attr.value);
-    //                 for(var i=0; i<myarr.length;i++)
-    //                 {
-    //                    $("#attrcolor").append("<option value= "+myarr[i]+">"+myarr[i]+"</option>");
-    //                 }
-    //                }
-    //                else if(attr.attribute_name == 'size'){
-    //                 const myarr = JSON.parse(attr.value);
-    //                 for(var i=0; i<myarr.length; i++)
-    //                 {
-    //                    $("#attrsize").append("<option value= "+myarr[i]+">"+myarr[i]+"</option>");
-    //                 }
-    //               }
-                
-    //             });
-
-    //           //  $(".attrcolor").append(elm);
-    //     });
-    // });
+           
     </script>
 
     
 @endsection
-
-{{-- <div class='col-md-2'><div class="img-thumb-wrapper card shadow"> <img class="img-thumb" id="mainr1"  src=""   /> <br/><span class="removeimg" id="removemainimg" value="mainimg">REEemove</span> </div></div> <div class='col-md-2'><div class="img-thumb-wrapper card shadow"> <img class="img-thumb" id="sub1r1"  src=""   /> <br/><span class="removeimg" id="removesub1img" value="subimg1">REEemove</span> </div></div> <div class='col-md-2'><div class="img-thumb-wrapper card shadow"> <img class="img-thumb" id="sub2r1"  src=""   /> <br/><span class="removeimg" id="removesub2img" value="subimg2">REEemove</span> </div></div> <div class='col-md-2'><div class="img-thumb-wrapper card shadow"> <img class="img-thumb" id="sub3r1"  src=""   /> <br/><span class="removeimg" id="removesub3img" value="subimg3">REEemove</span> </div></div> --}}
-
-
-{{-- <div class="col-md-3"><span class="btn btn-primary btn-productimg"><i class="fa fa-cloud-upload" aria-hidden="true"></i> <input class="form-control add_product" type="file" id="mainimg" name="mainimg[]"  accept="image/*"> </span><label class="text-secondary fw-bold">Upload main image</label> </div> <div class="col-md-3"> <span class="btn btn-primary btn-productimg"  > <i class="fa fa-cloud-upload" aria-hidden="true"></i> <input class="form-control add_product" type="file" id="subimg1" name="subimg1[]"  accept="image/*"> </span><label class="text-secondary">Upload Sub image1</label> </div> <div class="col-md-3"> <span class="btn btn-primary btn-productimg"  > <i class="fa fa-cloud-upload" aria-hidden="true"></i> <input class="form-control add_product" type="file" id="subimg2" name="subimg2[]"  accept="image/*"> </span><label class="text-secondary">Upload Sub image2</label> </div> <div class="col-md-3"> <span class="btn btn-primary btn-productimg" > <i class="fa fa-cloud-upload" aria-hidden="true"></i> <input class="form-control add_product" type="file" id="subimg3" name="subimg3[]"  accept="image/*"> </span><label class="text-secondary">Upload Sub image2</label> </div> --}}

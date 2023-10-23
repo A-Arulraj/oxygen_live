@@ -269,7 +269,7 @@ class AttributeController extends Controller
     public function getAttributes(Request $request)
     {
         $attribute_data = Attribute::where('category_sub_id', $request->sub_category_id)
-        ->where('created_byid', 1)
+        // ->where('created_byid', 1)
         ->get();
         return response()->json($attribute_data);
     }

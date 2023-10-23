@@ -116,7 +116,7 @@ class ProductsController extends Controller
             $products->length = $request->length;
             $products->width = $request->width;
             $products->height = $request->height;
-            //$products->specification= $request->specification;
+            $products->specification= $request->specification;
 
             $products->offers = $request->offers;
             $products->collection = $request->collection;
@@ -327,6 +327,7 @@ class ProductsController extends Controller
         $offer = offer::where('created_by_id',$login_id)->get();
         $specification = Specification::where('category_sub_id', $category_sub)->get();
         $specifi = Specification::get();
+       
         $productdetails = ProductsDetails::where('products_id', $id)->get();        
         $productspecs = ProductSpecs::where('products_id', $id)->get();
         $productsAttri = productsAttri::where('products_id', $id)->get();
@@ -459,11 +460,12 @@ class ProductsController extends Controller
         $Products->length = $request->input('length');
         $Products->width = $request->input('width');
         $Products->height = $request->input('height');
+        $products->specification =$request->input('specification');
         $Products->offers = $request->input('offer');
         $Products->collection = $request->input('collection');
         $Products->flag = 1;
         $Products->status = 1;
-        $Products->created_by = 1;
+        $Products->created_by = $login_id;
         $Products->save();
 
         $filename1 = '';

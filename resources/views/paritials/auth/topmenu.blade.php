@@ -19,34 +19,11 @@
             use App\Models\Products;
             use Illuminate\Support\Facades\Auth;
             use App\Models\User;
-            //    $ordersproduct = orders::join('ordersproducts',"ordersproducts.order_id","=","orders.orders_id")
-            //    ->where('ordersproducts.order_status', '=', 'New')->get();
-            //    print_r(count($ordersproduct));
-            //   $orderscount = count($ordersproduct);   hii hello
-            $userId1 = session('userId');
+               $ordersproduct = orders::join('ordersproducts',"ordersproducts.order_id","=","orders.orders_id")
+               ->where('ordersproducts.order_status', '=', 'New')->get();
+               print_r(count($ordersproduct));
+              $orderscount = count($ordersproduct);  // hii hello
             
-            //  dd($userId1);
-            $user = User::where('id',$userId1)->get();
-            // dd($user);
-            if($user[0]->status == 1)
-            {
-               
-                $userType = 'Admin';    
-                $userId = 1;
-            }
-            elseif($user[0]->status == 2){
-               
-            $userType = 'Vendar'; 
-            $userId = $userId1;
-            }
-
-            $ordersproduct = Products::join('ordersproducts', 'ordersproducts.product_id', '=', 'products.product_id')
-                ->where('ordersproducts.order_status', '=', 'New')
-                ->where(function ($query) use ($userType, $userId) {
-                    $query->where('products.logintype', '=', $userType)
-                        ->where('products.login_id', '=', $userId);
-                })
-                ->get();
         $orderscount = count($ordersproduct);
                
             ?>

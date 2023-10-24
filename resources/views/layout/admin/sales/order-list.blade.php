@@ -128,10 +128,10 @@
                                                             // exit();
                                                             ?>
                                                             <td><input type="checkbox" class="sub_chk" data-id="{{$attribute->id}}"></td>   
-                                                            <td>
-                                                                {{-- <input type="checkbox" id="option-all" value = "{{ $attribute->id }}" onchange="checkall(this)"> --}}
+                                                            {{--    <td>
+                                                               <input type="checkbox" id="option-all" value = "{{ $attribute->id }}" onchange="checkall(this)">
                                                               
-                                                            </td>
+                                                            </td> --}}
                                                             
                                                             <td>{{ $attribute->orders_id }}</td>
             

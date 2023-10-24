@@ -12,14 +12,27 @@ class SalesController extends Controller
 {
     public function order()
     {
+        $login_id = session()->get('login_id');
         $orders = Orders::get();
-        $ordersproduct = ordersproduct::get();
+        // $ordersproduct = ordersproduct::
+        //                 where('login_id', $login_id)->get();
 
+        DB::table('ordersproducts')
+    ->leftJoin('products_details', 'products_details.id', '=', 'ordersproducts.product_id')
+    ->where('products_details.login_id', $login_id)
+    ->get();
+
+    $ordersProducts =  DB::table('orders')
+    ->leftJoin('ordersproducts', 'ordersproducts.order_id', '=', 'orders.orders_id')
+    ->leftJoin('products_details', 'products_details.id', '=', 'ordersproducts.product_id')
+    ->where('products_details.login_id', $login_id)
+    ->get();
+        // dd( $ordersProducts );
         return view('layout.admin.sales.order-list')
         ->with(
             [
                 "orders" => $orders,
-                "ordersproduct" =>$ordersproduct
+                "ordersproduct" =>$ordersProducts
                 
             ]
         );

@@ -103,24 +103,69 @@
                                                      use App\Models\order\Orders;
                                                      use App\Models\order\ordersproduct;
 
-                                                    
-                                                        $ordersproduct = orders::join('ordersproducts',"ordersproducts.order_id","=","orders.orders_id")
-                                                        ->where('ordersproducts.order_status', '=', 'New')->get();
+                                                     $login_id = session()->get('login_id');
+                                                        // $ordersproduct = orders::join('ordersproducts',"ordersproducts.order_id","=","orders.orders_id")
+                                                        // ->where('ordersproducts.order_status', '=', 'New')->get();
+                                                        $ordersProducts =  DB::table('orders')
+                                                        ->leftJoin('ordersproducts', 'ordersproducts.order_id', '=', 'orders.orders_id')
+                                                        ->leftJoin('products_details', 'products_details.id', '=', 'ordersproducts.product_id')
+                                                        ->where('products_details.login_id', $login_id)
+                                                        ->where('ordersproducts.order_status', '=', 'New')
+                                                        ->get();
 
-                                                        $ordersproductaccept = orders::join('ordersproducts',"ordersproducts.order_id","=","orders.orders_id")
-                                                        ->where('ordersproducts.order_status', '=', 'Accept')->get();
+                                                        // $ordersproductaccept = orders::join('ordersproducts',"ordersproducts.order_id","=","orders.orders_id")
+                                                        // ->where('ordersproducts.order_status', '=', 'Accept')->get();
 
-                                                        $ordersproductdispatch = orders::join('ordersproducts',"ordersproducts.order_id","=","orders.orders_id")
-                                                        ->where('ordersproducts.order_status', '=', 'Dispatch')->get();
-                                                        $ordersproductdelivered = orders::join('ordersproducts',"ordersproducts.order_id","=","orders.orders_id")
-                                                        ->where('ordersproducts.order_status', '=', 'Delivered')->get();
-                                                        $ordersproductreturn = orders::join('ordersproducts',"ordersproducts.order_id","=","orders.orders_id")
-                                                        ->where('ordersproducts.order_status', '=', 'Return')->get();
-                                                        $ordersproductcancel = orders::join('ordersproducts',"ordersproducts.order_id","=","orders.orders_id")
-                                                        ->where('ordersproducts.order_status', '=', 'Cancel')->get();
-                                                        //  dd($ordersproductaccept);
+                                                        $ordersproductaccept =  DB::table('orders')
+                                                        ->leftJoin('ordersproducts', 'ordersproducts.order_id', '=', 'orders.orders_id')
+                                                        ->leftJoin('products_details', 'products_details.id', '=', 'ordersproducts.product_id')
+                                                        ->where('products_details.login_id', $login_id)
+                                                        ->where('ordersproducts.order_status', '=', 'Accept')
+                                                        ->get();
+
+
+                                                        // $ordersproductdispatch = orders::join('ordersproducts',"ordersproducts.order_id","=","orders.orders_id")
+                                                        // ->where('ordersproducts.order_status', '=', 'Dispatch')->get();
+                                                        $ordersproductdispatch =  DB::table('orders')
+                                                        ->leftJoin('ordersproducts', 'ordersproducts.order_id', '=', 'orders.orders_id')
+                                                        ->leftJoin('products_details', 'products_details.id', '=', 'ordersproducts.product_id')
+                                                        ->where('products_details.login_id', $login_id)
+                                                        ->where('ordersproducts.order_status', '=', 'Dispatch')
+                                                        ->get();
+
+
+                                                        // $ordersproductdelivered = orders::join('ordersproducts',"ordersproducts.order_id","=","orders.orders_id")
+                                                        // ->where('ordersproducts.order_status', '=', 'Delivered')->get();
+                                                        $ordersproductdelivered =  DB::table('orders')
+                                                        ->leftJoin('ordersproducts', 'ordersproducts.order_id', '=', 'orders.orders_id')
+                                                        ->leftJoin('products_details', 'products_details.id', '=', 'ordersproducts.product_id')
+                                                        ->where('products_details.login_id', $login_id)
+                                                        ->where('ordersproducts.order_status', '=', 'Delivered')
+                                                        ->get();
+
+
+                                                        // $ordersproductreturn = orders::join('ordersproducts',"ordersproducts.order_id","=","orders.orders_id")
+                                                        // ->where('ordersproducts.order_status', '=', 'Return')->get();
+                                                        $ordersproductreturn =  DB::table('orders')
+                                                        ->leftJoin('ordersproducts', 'ordersproducts.order_id', '=', 'orders.orders_id')
+                                                        ->leftJoin('products_details', 'products_details.id', '=', 'ordersproducts.product_id')
+                                                        ->where('products_details.login_id', $login_id)
+                                                        ->where('ordersproducts.order_status', '=', 'Return')
+                                                        ->get();
+
+
+                                                        // $ordersproductcancel = orders::join('ordersproducts',"ordersproducts.order_id","=","orders.orders_id")
+                                                        // ->where('ordersproducts.order_status', '=', 'Cancel')->get();
+                                                        $ordersproductcancel =  DB::table('orders')
+                                                        ->leftJoin('ordersproducts', 'ordersproducts.order_id', '=', 'orders.orders_id')
+                                                        ->leftJoin('products_details', 'products_details.id', '=', 'ordersproducts.product_id')
+                                                        ->where('products_details.login_id', $login_id)
+                                                        ->where('ordersproducts.order_status', '=', 'Cancel')
+                                                        ->get();
+
+                                                        //  dd($ordersproduct);
                                                         ?>
-                                                        @foreach ($ordersproduct as $attribute)
+                                                        @foreach ($ordersProducts as $attribute)
                                                         <tr>
                                                             {{-- @dd($attribute); --}}
                                                             <?php
@@ -156,7 +201,7 @@
                                                                 {{ $attribute->product_size }}
                                                             </td>
                                                             <td>                                          
-                                                                {{ $attribute->instock }}
+                                                                {{ isset($attribute->instock) ? :null }} 
                                                             </td>
                                                             
 

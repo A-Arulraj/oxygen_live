@@ -4,14 +4,14 @@
     @include('paritials.auth.header')?>
 
 <!-- page-wrapper Start-->
-@include('paritials.auth.topmenu');
+@include('paritials.vendorauth.topmenu');
 <!-- Page Header Ends -->
 
 <!-- Page Body Start-->
 <div class="page-body-wrapper">
 	
 	<!-- Page Sidebar Start-->
-	@include('paritials.vendorauth.sidemenu');
+	@include('paritials.auth.sidemenu');
 	<!-- Page Sidebar Ends-->
 	
 	<!-- Right sidebar Start-->
@@ -78,7 +78,9 @@
                                                 <table class="table fcolor" id="table" data-click-to-select="true" data-sort-name="id" data-sort-order="asc" data-mobile-responsive="true" data-toggle="table" data-show-columns="true" data-sort="true" data-pagination="true" data-search="true" data-show-refresh="true" data-key-events="true" data-resizable="true" data-cookie="true" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar" >
                                                     <thead>
                                                         <tr>
-                                                         <th><input type="checkbox" id="master"></th>
+														{{-- <th data-field="dd" data-checkbox="true">
+                                                         </th> --}}
+                                                         <th width="50px"><input type="checkbox" id="master"></th>
 
 														<th data-field="orderid" data-sortable="true">ORDER ID</th>
 														<th data-field="date" data-sortable="true">ORDER DATE</th>
@@ -97,15 +99,86 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                    
-                                                        @foreach ($ordersproduct as $attribute)
+                                                    <?php
+                                                     use App\Models\order\Orders;
+                                                     use App\Models\order\ordersproduct;
+
+                                                     $login_id = session()->get('login_id');
+                                                        // $ordersproduct = orders::join('ordersproducts',"ordersproducts.order_id","=","orders.orders_id")
+                                                        // ->where('ordersproducts.order_status', '=', 'New')->get();
+                                                        $ordersProducts =  DB::table('orders')
+                                                        ->leftJoin('ordersproducts', 'ordersproducts.order_id', '=', 'orders.orders_id')
+                                                        ->leftJoin('products_details', 'products_details.id', '=', 'ordersproducts.product_id')
+                                                        ->where('products_details.login_id', $login_id)
+                                                        ->where('ordersproducts.order_status', '=', 'New')
+                                                        ->get();
+
+                                                        // $ordersproductaccept = orders::join('ordersproducts',"ordersproducts.order_id","=","orders.orders_id")
+                                                        // ->where('ordersproducts.order_status', '=', 'Accept')->get();
+
+                                                        $ordersproductaccept =  DB::table('orders')
+                                                        ->leftJoin('ordersproducts', 'ordersproducts.order_id', '=', 'orders.orders_id')
+                                                        ->leftJoin('products_details', 'products_details.id', '=', 'ordersproducts.product_id')
+                                                        ->where('products_details.login_id', $login_id)
+                                                        ->where('ordersproducts.order_status', '=', 'Accept')
+                                                        ->get();
+
+
+                                                        // $ordersproductdispatch = orders::join('ordersproducts',"ordersproducts.order_id","=","orders.orders_id")
+                                                        // ->where('ordersproducts.order_status', '=', 'Dispatch')->get();
+                                                        $ordersproductdispatch =  DB::table('orders')
+                                                        ->leftJoin('ordersproducts', 'ordersproducts.order_id', '=', 'orders.orders_id')
+                                                        ->leftJoin('products_details', 'products_details.id', '=', 'ordersproducts.product_id')
+                                                        ->where('products_details.login_id', $login_id)
+                                                        ->where('ordersproducts.order_status', '=', 'Dispatch')
+                                                        ->get();
+
+
+                                                        // $ordersproductdelivered = orders::join('ordersproducts',"ordersproducts.order_id","=","orders.orders_id")
+                                                        // ->where('ordersproducts.order_status', '=', 'Delivered')->get();
+                                                        $ordersproductdelivered =  DB::table('orders')
+                                                        ->leftJoin('ordersproducts', 'ordersproducts.order_id', '=', 'orders.orders_id')
+                                                        ->leftJoin('products_details', 'products_details.id', '=', 'ordersproducts.product_id')
+                                                        ->where('products_details.login_id', $login_id)
+                                                        ->where('ordersproducts.order_status', '=', 'Delivered')
+                                                        ->get();
+
+
+                                                        // $ordersproductreturn = orders::join('ordersproducts',"ordersproducts.order_id","=","orders.orders_id")
+                                                        // ->where('ordersproducts.order_status', '=', 'Return')->get();
+                                                        $ordersproductreturn =  DB::table('orders')
+                                                        ->leftJoin('ordersproducts', 'ordersproducts.order_id', '=', 'orders.orders_id')
+                                                        ->leftJoin('products_details', 'products_details.id', '=', 'ordersproducts.product_id')
+                                                        ->where('products_details.login_id', $login_id)
+                                                        ->where('ordersproducts.order_status', '=', 'Return')
+                                                        ->get();
+
+
+                                                        // $ordersproductcancel = orders::join('ordersproducts',"ordersproducts.order_id","=","orders.orders_id")
+                                                        // ->where('ordersproducts.order_status', '=', 'Cancel')->get();
+                                                        $ordersproductcancel =  DB::table('orders')
+                                                        ->leftJoin('ordersproducts', 'ordersproducts.order_id', '=', 'orders.orders_id')
+                                                        ->leftJoin('products_details', 'products_details.id', '=', 'ordersproducts.product_id')
+                                                        ->where('products_details.login_id', $login_id)
+                                                        ->where('ordersproducts.order_status', '=', 'Cancel')
+                                                        ->get();
+
+                                                        //  dd($ordersproduct);
+                                                        ?>
+                                                        @foreach ($ordersProducts as $attribute)
                                                         <tr>
+                                                            {{-- @dd($attribute); --}}
+                                                            <?php
+                                                            // print_r($attribute);
+                                                            // exit();
+                                                            ?>
+                                                            <td><input type="checkbox" class="sub_chk" data-id="{{$attribute->id}}"></td>   
+                                                            {{--    <td>
+                                                               <input type="checkbox" id="option-all" value = "{{ $attribute->id }}" onchange="checkall(this)">
+                                                              
+                                                            </td> --}}
                                                             
-                                                            <td><input type="checkbox" class="sub_chk" data-id="{{$attribute->id}}" ></td>   
-                                                            
-            
-            
-                                                            <td>{{ $attribute->order_id }}</td>
+                                                            <td>{{ $attribute->orders_id }}</td>
             
                                                             <td>{{ $attribute->order_date }}</td>
             
@@ -128,7 +201,7 @@
                                                                 {{ $attribute->product_size }}
                                                             </td>
                                                             <td>                                          
-                                                              {{-- {{ $attribute->instock }} --}}
+                                                                {{ isset($attribute->instock) ? :null }} 
                                                             </td>
                                                             
 
@@ -249,7 +322,7 @@
                                                         <td>#{{ $loop->iteration }}</td>
         
         
-                                                        <td>{{ $attribute->order_id }}</td>
+                                                        <td>{{ $attribute->orders_id }}</td>
         
                                                         <td>{{ $attribute->order_date }}</td>
         
@@ -272,7 +345,7 @@
                                                             {{ $attribute->product_size }}
                                                         </td>
                                                         <td>                                          
-                                                            {{-- {{ $attribute->instock }} --}}
+                                                            {{ $attribute->instock }}
                                                         </td>
                                                         
 
@@ -392,7 +465,7 @@
                                             <td>#{{ $loop->iteration }}</td>
 
 
-                                            <td>{{ $attribute->order_id }}</td>
+                                            <td>{{ $attribute->orders_id }}</td>
 
                                             <td>{{ $attribute->order_date }}</td>
 
@@ -415,7 +488,7 @@
                                                 {{ $attribute->product_size }}
                                             </td>
                                             <td>                                          
-                                                {{-- {{ $attribute->instock }} --}}
+                                                {{ $attribute->instock }}
                                             </td>
                                             
 
@@ -537,7 +610,7 @@
                                                         <td>#{{ $loop->iteration }}</td>
             
             
-                                                        <td>{{ $attribute->order_id }}</td>
+                                                        <td>{{ $attribute->orders_id }}</td>
             
                                                         <td>{{ $attribute->order_date }}</td>
             
@@ -560,7 +633,7 @@
                                                             {{ $attribute->product_size }}
                                                         </td>
                                                         <td>                                          
-                                                            {{-- {{ $attribute->instock }} --}}
+                                                            {{ $attribute->instock }}
                                                         </td>
                                                         
             
@@ -682,7 +755,7 @@
                                                         <td>#{{ $loop->iteration }}</td>
             
             
-                                                        <td>{{ $attribute->order_id }}</td>
+                                                        <td>{{ $attribute->orders_id }}</td>
             
                                                         <td>{{ $attribute->order_date }}</td>
             
@@ -705,7 +778,7 @@
                                                             {{ $attribute->product_size }}
                                                         </td>
                                                         <td>                                          
-                                                            {{-- {{ $attribute->instock }} --}}
+                                                            {{ $attribute->instock }}
                                                         </td>
                                                         
             
@@ -826,7 +899,7 @@
                                                     <td>#{{ $loop->iteration }}</td>
         
         
-                                                    <td>{{ $attribute->order_id }}</td>
+                                                    <td>{{ $attribute->orders_id }}</td>
         
                                                     <td>{{ $attribute->order_date }}</td>
         
@@ -849,7 +922,7 @@
                                                         {{ $attribute->product_size }}
                                                     </td>
                                                     <td>                                          
-                                                        {{-- {{ $attribute->instock }} --}}
+                                                        {{ $attribute->instock }}
                                                     </td>
                                                     
         
@@ -922,6 +995,144 @@
                                 </div>
                                 
                                 
+                                {{-- <form class="needs-validation" novalidate="">
+				
+                                        <div class="row">
+
+                                            <div class="datatable-dashv1-list custom-datatable-overright">
+
+
+                                            <table class="table fcolor" id="table" data-click-to-select="true" data-sort-name="id" data-sort-order="asc" data-mobile-responsive="true" data-toggle="table" data-show-columns="true" data-sort="true" data-pagination="true" data-search="true" data-show-refresh="true" data-key-events="true" data-resizable="true" data-cookie="true" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                                 <thead>
+                                                        <tr>
+														<th data-field="dd" data-checkbox="true">
+                                                        </th>
+														<th data-field="orderid" data-sortable="true">ORDER ID</th>
+														<th data-field="date" data-sortable="true">CANCEL DATE</th>
+														<th data-field="orderqty" data-sortable="true">ORDER QTY</th>
+														
+														<th data-field="Productid" data-sortable="true">PRODUCT ID</th>
+                                                        <th data-field="image" data-sortable="true">IMAGE</th>
+                                                        <th data-field="productname" data-sortable="true"> PRODUCT NAME</th>
+                                                            <th data-field="attributes" data-sortable="true">ATTRIBUTES</th>
+                                                            
+															<th data-field="stock" data-sortable="true">IN STOCK</th>
+                                                            
+                                                            <th data-field="paymentmode" data-sortable="true">PAYMENT MODE</th>
+															<th>STATUS</th>
+                                                            <th>ACTION</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+
+
+                                                        <tr>
+														<td></td>
+                                                            <td>#093877</td>
+                                                           
+															<td>13-Jun-2022 10.30 AM</td>
+															<td>10</td>
+                                                            <td>00125</td>
+                                                            
+                                                            
+												<td>	<div class="d-flex">
+                                                                    <img src="../assets/images/products/blouse.jpg" alt="" class="img-fluid img-30 me-2 blur-up lazyloaded">
+
+                                                                </div></td>
+															 <td style="width:100%;">
+                                                                Readymade Blouse Velvet Material
+                                                            </td>
+															<td>RED-L</td>
+															<td>6</td>
+                                                            <td><span class="font-primary">UPI</span></td>
+															
+														<td><p class="text-center" style="border:1px solid #f90000;color:#f90000;border-radius:5px;">Cancel</p></td>
+															
+                                                            <td><span> <a href="#" class="badge badge-secondary px-2" data-bs-toggle="modal" data-original-title="test" data-bs-target="#can" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                                                                    <a href="#" onclick="return confirm('Are you sure, you want to delete it?')" class="badge badge-warning px-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a></span></td>
+
+
+                                                        </tr>
+											<tr>
+														<td></td>
+                                                            <td>#093877</td>
+                                                           
+															<td>25-Jun-2022 10.30 AM</td>
+															<td>10</td>
+                                                            <td>00125</td>
+                                                            
+                                                            
+												<td>	<div class="d-flex">
+                                                                    <img src="../assets/images/products/blouse.jpg" alt="" class="img-fluid img-30 me-2 blur-up lazyloaded">
+
+                                                                </div></td>
+															 <td style="width:100%;">
+                                                                Readymade Blouse Velvet Material
+                                                            </td>
+															<td>RED-L</td>
+															<td>6</td>
+                                                            <td><span class="font-primary">COD</span></td>
+															
+															<td><p class="text-center" style="border:1px solid #f90000;color:#f90000;border-radius:5px;">Cancel</p></td>
+															
+                                                            <td><span> <a href="#" class="badge badge-secondary px-2" data-bs-toggle="modal" data-original-title="test" data-bs-target="#exampleModal" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
+                                                                    <a href="#" onclick="return confirm('Are you sure, you want to delete it?')" class="badge badge-warning px-2" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete"><i class="fa fa-trash"></i></a></span></td>
+
+
+                                                        </tr>
+                                                    
+
+                                                    </tbody>
+                                                </table>
+												<!-- The Modal -->
+                                            <div class="modal" id="can">
+                                            <div class="modal-dialog  modal-dialog-centered">
+                                                <div class="modal-content">
+
+                                                <!-- Modal Header -->
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Status</h4>
+                                                    <button type="button" class="btn-close text-danger" data-bs-dismiss="modal"></button>
+                                                </div>
+
+                                                <!-- Modal body -->
+                                                <div class="modal-body">
+                                                <div class="container-fluid">
+                                                <div class="row">
+                                                <form action="#">
+                                                <div class="col-md-3">Change Status	</div>
+                                                <div class="col-md-6">
+                                                    <select class="form-select form-select-lg" name="status" required="">
+                                                                    <option selected disabled>--Select--</option>
+                                                                    <option value="Accept">Accept</option>
+                                                                    <option value="Accept">Dispatch</option>
+                                                                    <option value="Delivered">Delivered</option>
+                                                                    <option value="Return">Return</option>
+                                                                    <option value="Cancel">Cancel</option>
+                                                                                                    
+                                                                    </select>
+                                                                    </div>
+                                                        </form>
+                                                </div>
+                                                </div>
+                                                </div>
+
+                                                <!-- Modal footer -->
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" >SUBMIT</button>
+                                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                                </div>
+
+                                                </div>
+                                            </div>
+                                            </div>
+                                            </div>
+                                        </div>
+								
+							        </div>
+							
+                                </form> --}}
                             </div>
                         </div>
 
@@ -944,21 +1155,21 @@
 <script>
      $(document).ready(function() {
         
-      $("#btnnew").click(function(e) {
+      $(".btnnew").click(function(e) {
         e.preventDefault();
        
         var btnnew = $(this).val();
-        //alert(btnnew);
+        
      // alert(btnaccess);
      var newmodal = $('#New').modal('show');
      $('button[type=submit]').click(function(e) {
      var sts = $('#o_status').val();   
-    //  alert(sts);
+    // alert(sts);
 
     
         $.ajax({
 
-        url: "{{ url('vendar/orderstatusupdate') }}/"+btnnew, 
+        url: "{{ url('admin/orderstatusupdate') }}/"+btnnew, 
         type: "POST",
         data: {
             "_token": "{{ csrf_token() }}",
@@ -1012,7 +1223,7 @@
 
         dataType: "json",
         success: function (data) {
-            //alert(data);
+           // alert(data);
             $('#accept').modal('hide');
             location.reload();
         },

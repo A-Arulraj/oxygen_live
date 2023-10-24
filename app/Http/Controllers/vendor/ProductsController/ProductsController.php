@@ -246,6 +246,9 @@ class ProductsController extends Controller
                 $products_details->return_replace = $request->return_replace[$key] ?? 1;
                 $products_details->r_days = $request->r_days[$key];
                 $products_details->low_stock_limit = $request->low_stock_limit[$key];
+                $products_details->login_id =$login_id ;
+                $products_details->logintype = "Vendor";
+                $products_details->created_by =$login_id;
                 //$products_details->threshold = $request->threshold[$key];
 
                 $products_details->save();

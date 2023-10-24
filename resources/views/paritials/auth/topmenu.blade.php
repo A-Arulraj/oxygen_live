@@ -19,10 +19,21 @@
             use App\Models\Products;
             use Illuminate\Support\Facades\Auth;
             use App\Models\User;
-               $ordersproduct = orders::join('ordersproducts',"ordersproducts.order_id","=","orders.orders_id")
-               ->where('ordersproducts.order_status', '=', 'New')->get();
-               print_r(count($ordersproduct));
-              $orderscount = count($ordersproduct);  // hii hello
+
+            $login_id = session()->get('login_id');
+                // $ordersproduct = orders::join('ordersproducts',"ordersproducts.order_id","=","orders.orders_id")
+                // ->where('ordersproducts.order_status', '=', 'New')->get();
+                $ordersproduct =  DB::table('orders')
+                ->leftJoin('ordersproducts', 'ordersproducts.order_id', '=', 'orders.orders_id')
+                ->leftJoin('products_details', 'products_details.id', '=', 'ordersproducts.product_id')
+                ->where('products_details.login_id', $login_id)
+                ->where('ordersproducts.order_status', '=', 'New')
+                ->get();
+
+            //    $ordersproduct = orders::join('ordersproducts',"ordersproducts.order_id","=","orders.orders_id")
+            //    ->where('ordersproducts.order_status', '=', 'New')->get();
+            //    print_r(count($ordersproduct));
+            //   $orderscount = count($ordersproduct);  // hii hello
             
         $orderscount = count($ordersproduct);
                

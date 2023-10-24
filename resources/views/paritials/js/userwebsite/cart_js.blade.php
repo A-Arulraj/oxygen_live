@@ -58,11 +58,14 @@ $(document).on('click','#cartEffect', function(e){
     var product_id = $('#product_id').val();
     var product_name = $('#product_name').val();
     var product_size = $('#product_size').val();
+
     var product_color = $('#product_color').val();
     var product_qnty = $('#quantity').val();
     var product_price = $('#product_price').val();
     var fixeddiscount = $('#fixeddiscount').val();
     // alert(fixeddiscount);
+    // alert(product_size);
+    // alert(product_color);
     if(fixeddiscount != 'fixeddiscount')
     {
     var product_price = $('#product_price').val();
@@ -72,14 +75,6 @@ $(document).on('click','#cartEffect', function(e){
     {
         var product_price = $('#product_price1').val();
     }
-
-    // $id = $request->input('product_id');
-	// 	$name = $request->input('product_name');
-	// 	$price = $request->input('product_price');
-	// 	$qnty = $request->input('product_qnty');
-	// 	$size = $request->input('product_size');
-//   alert(product_color);
-
 
     $.ajax({
                     url: '{{route("ajaxAdd")}}',
@@ -125,6 +120,8 @@ $(document).on('click','#cartbook', function(e){
     var product_price = $('#product_price').val();
     var fixeddiscount = $('#fixeddiscount').val();
     // alert(fixeddiscount);
+    alert(product_size);
+    alert(product_color);
     if(fixeddiscount != 'fixeddiscount')
     {
     var product_price = $('#product_price').val();

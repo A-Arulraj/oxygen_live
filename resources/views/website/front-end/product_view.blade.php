@@ -866,13 +866,13 @@
                                         class="btn btn-solid hover-solid btn-animation"><i class="fa fa-shopping-cart me-1"
                                             aria-hidden="true"></i>{{ $offers[0]->title }}</a> --}}
 
-                                        <input type="hidden" name="product_size" id="product_size" value="{{$product_det[0]->size}}" class="form-control input-number">
-                                        <input type="hidden" name="product_color" id="product_color" value="{{$product_det[0]->color}}" class="form-control input-number">
-                                        <input type="hidden" name="hidden_name" id="product_name" value="{{$product_det[0]->product_name}}" />
-                                        <input type="hidden" name="hidden_price" id="product_price" value="{{$product_det[0]->retail_price}}" />
-                                        <input type="hidden" name="product_id" id="product_id" value="{{$product_det[0]->id }}" />
-                                        <input type="hidden" name="product_image" id="product_image" value="{{$product_det[0]->product_detail_image }}" />
-                                        <input type="hidden" name="product_qty" id="product_qty" value="{{ $product_det[0]->quantity }}" />
+                                        <input type="text" name="product_size" id="product_size" value="{{$product_det[0]->size}}" class="form-control input-number">
+                                        <input type="text" name="product_color" id="product_color" value="{{$product_det[0]->color}}" class="form-control input-number">
+                                        <input type="text" name="hidden_name" id="product_name" value="{{$product_det[0]->product_name}}" />
+                                        <input type="text" name="hidden_price" id="product_price" value="{{$product_det[0]->retail_price}}" />
+                                        <input type="text" name="product_id" id="product_id" value="{{$product_det[0]->id }}" />
+                                        <input type="text" name="product_image" id="product_image" value="{{$product_det[0]->product_detail_image }}" />
+                                        <input type="text" name="product_qty" id="product_qty" value="{{ $product_det[0]->quantity }}" />
                                     </div>
 
 
@@ -1425,108 +1425,12 @@
         });
     </script>
 
-    
-
-
-
-
-
-
-
-
-
-
-
-<script>
-    //
-    // $( document ).ready(function() {
-    //         var id = $(".bg-light0").val();
-    //           var clsize;
-    //           console.log(id);
-
-    //       $.ajax({
-
-    //             url: '{{route("colorsize", "id")}}',
-    //             type: "GET",
-    //             data: {
-    //                 "_token": "{{ csrf_token() }}",
-    //                  "id": id
-
-    //             },
-
-    //             dataType: "json",
-    //              success: function (data) {
-    //                 // console.log(data);
-    //                 //  alert(data);
-    //                 var arr = [];
-    //                 $("#clsize").html('');
-    
-                  
-    //                 $.each( data, function( key, value ) {
-    //                     var strlength = value.color;
-    //                     // alert(strlength.length);
-    //                     console.log(value);
-                        
-    //                   if(value.size == 'Size' || value.size == null)
-    //                     {
-                            
-                          
-    //                     }   
-    //                     else{
-                            
-    //                       $("#clsize").append('<li id = "size'+value.id+'" class ="size" value='+value.id+'><a href="javascript:void(0)">'+value.size+'</a></li><input type="hidden" id="sizee'+value.id+'" name="sizee'+value.id+'" value="'+value.size+'">');                            
-    //                     }
-    //                     var proimg = value.product_detail_image;
-    //                     var imgurl1="{{ asset('assets/images/products/detail/')}}";
-    //                     const myArr = JSON.parse(proimg);
-    //                     console.log(myArr);
-    //                     console.log(myArr.length);
-
-
-
-    //                 //    x++;
-    //                 //    if(x<=1)
-    //                 //     {
-    //                 //     for (let i = 0; i < myArr.length; i++) {
-                           
-    //                 //          $("#slide1").append('<img src="'+imgurl1+'/'+myArr[i]+'" alt="" class="img-fluid blur-up lazyload image_zoom_cls-0" style="width:500px;height:600px;">');
-    //                 //          $("#slide").append('<img src="'+imgurl1+'/'+myArr[i]+'" alt="" class="img-fluid blur-up lazyload">');
-    //                 //         }
-
-    //                 //     }                      
-                       
-
-    //                 //    proimg.forEach(myfunction);
-                        
-    //                 //     function myFunction(item, index) {
-    //                 //         $("#slide1").append('<img src="asset(assets/images/products/detail)'+'/'+index+' " alt="" class="img-fluid blur-up lazyload image_zoom_cls-0" style="width:500px;height:600px;">');
-    //                 //         $("#slide").append('<img src="asset(assets/images/products/detail)'+'/'+index+' " alt="" class="img-fluid blur-up lazyload image_zoom_cls-0" style="width:500px;height:600px;">');
-                            
-    //                 //     }
-                        
-    //                 });
-                    
-    //             },
-    //             error: function (data) {
-    //                 console.log('Error:', data);
-    //             }
-    //             });
-
-    // });
- 
-   
-</script>
-
-
-
-
-
 <script>
      $( document ).on("click",".size",function() {
         var ul= document.getElementById("clsize");
         
         var btns = ul.getElementsByClassName("size");
-
+        
         for (var i = 0; i < btns.length; i++) {
         btns[i].addEventListener("click", function() {
         var current = document.getElementsByClassName("active");
@@ -1538,6 +1442,7 @@
         
        
             var size = $(this).val();
+            alert(size);
            $.ajax({
                 url: '{{route("sizedetails", "size")}}',
                 type: "GET",
@@ -1547,8 +1452,9 @@
                 },
                 dataType: "json",
                  success: function (data) {
-                    console.log(data);
-                //    console.log(data.pro_sizedetails[0].selling_price);
+                     console.log(data);
+                    alert(data.offername);
+                  //    console.log(data.pro_sizedetails[0].selling_price);
 
                     // console.log(data.pro_color[0].product_detail_image);
                     
@@ -1578,10 +1484,11 @@
                     }
                     //  $('.color-variant').html('<li id ="bg-light0" class="bg-light0" value ="'+data.pro_color[0].id+'">'+data.pro_color[0].color+'</li>');
                       var csize = document.getElementById("bg-light0"+size).value;
-                    
+                     alert(csize);
                       var sizee = document.getElementById("sizee"+size).value;
+                      alert(sizee);
                       const color =  document.getElementById("product_color"+size).value;
-                    
+                      alert(color);
                     const elements = document.querySelectorAll('#bg-light0'+size);
                      $('#product_size').val(sizee);
                      $('#product_color').val(color);

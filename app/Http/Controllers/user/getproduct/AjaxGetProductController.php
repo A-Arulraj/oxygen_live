@@ -23,6 +23,7 @@ class AjaxGetProductController extends Controller
     public function ajaxAdd(Request $request)
 	{
 		//Session::flush();
+		
 		$id = $request->input('product_id');
 		$name = $request->input('product_name');
 		$price = $request->input('product_price');
@@ -34,7 +35,7 @@ class AjaxGetProductController extends Controller
 		$session = $request->session();
 		// dd($session);
 		$cartData = ($session->get('cart')) ? $session->get('cart') : array();
-		//dd($cartData);
+		// dd($cartData);
 		if (array_key_exists($id, $cartData)) {
 			$product = ProductsDetails::join('products','products.product_id','=','products_details.products_id')->where('products_details.id', '=', $id)->get()->toArray();
             // $product1 = Products::where('product_id', '=',  $value['pid'])->get();
@@ -49,6 +50,7 @@ class AjaxGetProductController extends Controller
 			$cartData[$id]['gst'] = $product['0']['gst_id'];
 			$cartData[$id]['name'] = $name;
 			$cartData[$id]['price'] = $price;
+			// dd($cartData);
 		} else {
 			$product = ProductsDetails::join('products','products.product_id','=','products_details.products_id')->where('products_details.id', '=', $id)->get()->toArray();
 			$cartData[$id]['image'] =  $product['0']['product_detail_image'];
@@ -59,6 +61,7 @@ class AjaxGetProductController extends Controller
 			$cartData[$id]['gst'] = $product['0']['gst_id'];
 			$cartData[$id]['name'] = $name;
 			$cartData[$id]['price'] = $price;
+			// dd($cartData);
 		}
 		$n = 0;
 		if ($request->session()->has('cart')) {
@@ -454,7 +457,7 @@ public function orderscancel($id)
 			// print_r(json_decode($ord->value));
 			if(session('cart') != null ){
 			$details =  session('cart');
-		
+			//dd($details);
 			 ($details);
 				foreach($details as $key => $value)
 					{
@@ -535,7 +538,7 @@ public function orderscancel($id)
 		$orders_id=$request->orders_id;
 		$order_info = orders::where('orders_id',$orders_id)->first(); 
 			$orders_pro = ordersproduct::where('order_id',$orders_id)->get(); 
-			//dd($order_info);
+			dd($orders_pro);
 			return view('website.front-end.order-success')->
 			with([
 				"orders_id"=>$orders_id,

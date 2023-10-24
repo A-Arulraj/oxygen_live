@@ -183,10 +183,12 @@ class addtocartController extends Controller
     {
     //    echo 'test';
         $pro_id = $request->size;
+        
         $pro_sizedetails =  ProductsDetails::where('id',$pro_id)->get();
+        
         $product_id = $pro_sizedetails[0]->products_id;
         $productcolor =  ProductsDetails::where([['products_id',$product_id],['size',$pro_sizedetails[0]->size ]])->get();
-      
+        // dd($productcolor);
         $productoffer =Products::where('product_id',$productcolor[0]->products_id)->get();
         $offername = Offer::where('id',$productoffer[0]->offers)->get();
     

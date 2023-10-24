@@ -132,9 +132,7 @@
                                                                 {{-- <input type="checkbox" id="option-all" value = "{{ $attribute->id }}" onchange="checkall(this)"> --}}
                                                               
                                                             </td>
-                                                            <td>#{{ $loop->iteration }}</td>
-            
-            
+                                                            
                                                             <td>{{ $attribute->orders_id }}</td>
             
                                                             <td>{{ $attribute->order_date }}</td>

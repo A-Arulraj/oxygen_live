@@ -100,7 +100,7 @@ class AuthController extends Controller
                 // return redirect()->route('admindashboard');
                 // }  vendorerror
                 if($status == 2){   
-                    FacadesSession::put('username', $data['username']);
+                FacadesSession::put('username', $data['username']);
                 FacadesSession::put('userId', $userId);
                 FacadesSession::put('status', $status);
                 FacadesSession::put('login_id', $login_id);

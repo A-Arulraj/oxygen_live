@@ -146,7 +146,7 @@
                         ?>
                                     
                                     @foreach($orders_pro as $id => $details)
-                                       
+                                       @dd($details);
                                         <div class="row product-order-detail">
                                             <div class="col-3"><img src="{{ asset('assets/images/products/detail') . '/' . $details['product_image'] }}" alt=""
                                                     class="img-fluid blur-up lazyload"></div>

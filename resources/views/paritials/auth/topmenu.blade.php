@@ -47,9 +47,6 @@
                         ->where('products.login_id', '=', $userId);
                 })
                 ->get();
-
-
-        // dd($ordersproduct);
         $orderscount = count($ordersproduct);
                
             ?>

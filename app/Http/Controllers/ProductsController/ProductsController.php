@@ -444,6 +444,7 @@ class ProductsController extends Controller
         $offer = offer::get();
         $specification = Specification::where('category_sub_id', $category_sub)->get();
         $specifi = Specification::get();
+        
         $productdetails = ProductsDetails::where('products_id', $id)->get();        
         $productspecs = ProductSpecs::where('products_id', $id)->get();
         $productsAttri = productsAttri::where('products_id', $id)->get();

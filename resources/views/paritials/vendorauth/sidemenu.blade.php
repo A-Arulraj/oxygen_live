@@ -39,9 +39,9 @@
                    <!-- <li><a href=" {{ route('vendorattribute.master.index') }}"><i class="fa fa-circle"></i> Attributes</a>
                     </li> -->
                 
-                    <!-- <li><a href="{{ route('vendorproduct.specification.index') }}"><i class="fa fa-circle"></i>
+                    <li><a href="{{ route('vendorproduct.specification.index') }}"><i class="fa fa-circle"></i>
                             Specification</a>
-                    </li> -->   
+                    </li>   
 
                     {{--   <li><a href="{{ route('product.specification.index') }}"><i class="fa fa-circle"></i>
                         Offers</a>              

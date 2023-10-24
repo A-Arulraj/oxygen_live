@@ -545,7 +545,6 @@ public function orderscancel($id)
 				'order_info' =>$order_info,
 				'orders_pro' =>$orders_pro
 			]);
-
 	}
 
 /*Discount offer*/

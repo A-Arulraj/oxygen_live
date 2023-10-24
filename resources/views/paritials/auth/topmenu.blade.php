@@ -10,7 +10,7 @@
             <div class="mobile-sidebar w-auto">
                 <div class="media-body text-end switch-sm">
                     <label class="switch"><a href="#"><i id="sidebar-toggle"
-                       data-feather="align-left"></i></a></label>
+                                data-feather="align-left"></i></a></label>
                 </div>
             </div>
             <?php

@@ -538,7 +538,7 @@ public function orderscancel($id)
 		$orders_id=$request->orders_id;
 		$order_info = orders::where('orders_id',$orders_id)->first(); 
 			$orders_pro = ordersproduct::where('order_id',$orders_id)->get(); 
-			dd($orders_pro);
+			// dd($orders_pro);
 			return view('website.front-end.order-success')->
 			with([
 				"orders_id"=>$orders_id,

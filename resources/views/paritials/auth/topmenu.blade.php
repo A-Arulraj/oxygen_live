@@ -22,7 +22,7 @@
             //    $ordersproduct = orders::join('ordersproducts',"ordersproducts.order_id","=","orders.orders_id")
             //    ->where('ordersproducts.order_status', '=', 'New')->get();
             //    print_r(count($ordersproduct));
-            //   $orderscount = count($ordersproduct);
+            //   $orderscount = count($ordersproduct);   hii hello
             $userId1 = session('userId');
             
             //  dd($userId1);

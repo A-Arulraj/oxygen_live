@@ -29,6 +29,7 @@
 	use App\Http\Controllers\vendor\GstController\GstController;
 	use App\Http\Controllers\vendor\PackageController;
 	use App\Http\Controllers\vendor\VendorcreateController;
+	use App\Http\Controllers\vendor\editprofileController;
 	use App\Http\Controllers\vendor\ProductsController\SpecificationController;
 	use App\Http\Controllers\vendor\coupon\CouponController;
 	use App\Http\Controllers\vendor\PinCodeController\PinCodeController;
@@ -287,7 +288,9 @@
 	//Route::get('vendor/list', [VendorcreateController::class, 'list'])->name('vendor-list');
 	
 	Route::Post('/Ajaxpackage', [VendorcreateController::class, 'Ajaxpackage'])->name('Ajaxpackage');
-	
+	Route::get('editprofile/{id}', [VendorcreateController::class, 'editprofile'])->name('editprofile');
+	Route::resource('editprofile', editprofileController::class, ['names' => 'editprofile']);
+	Route::Post('/EAjaxpackage', [editprofileController::class, 'EAjaxpackage'])->name('EAjaxpackage');
 	// coupon
 	// Route::resource('coupon', CouponController::class, ['names' => 'coupon']);
 	//Route::resource('coupon', CouponController::class, ['names' => 'coupon']);

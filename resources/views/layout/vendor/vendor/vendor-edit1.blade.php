@@ -10,7 +10,7 @@
     <div class="page-body-wrapper">
 
         <!-- Page Sidebar Start-->
-        @include('paritials.auth.sidemenu');
+        @include('paritials.vendorauth.sidemenu');
         <!-- Page Sidebar Ends-->
 
         <!-- Right sidebar Start-->
@@ -117,7 +117,7 @@
                                                         <label for="validationCustom0" class="col-xl-4 col-md-4"> Password
                                                             </label>
                                                         <div class="col-xl-8 col-md-8">
-                                                            <input class="form-control" id="pass" value={{$vendorcreate->pass}}
+                                                            <input class="form-control" id="validationCustom0" value={{$vendorcreate->pass}}
                                                                 type="text" name="pass">
                                                         </div>
                                                     </div>
@@ -127,12 +127,11 @@
                                                         <label for="validationCustom0" class="col-xl-4 col-md-4"> Confirm
                                                             Password</label>
                                                         <div class="col-xl-8 col-md-8">
-                                                            <input class="form-control" id="confirm_pass" type="password" value={{$vendorcreate->pass1}}
-                                                                name="pass1" onkeyup="validate_password()">
+                                                            <input class="form-control" id="validationCustom0" type="password" value={{$vendorcreate->pass1}}
+                                                                name="pass1">
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <span id="wrong_pass_alert"></span>
                                             </div>
 
                                             <div class="row">
@@ -158,7 +157,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        
+
                                             <div class="row">
                                                 <div class="col-md-6">
 
@@ -300,7 +299,7 @@
                                                                 <option >Select Item</option>
                                                               
                                                                  @foreach ($zone as $zo)
-                                                                  <option value="{{ $zo->id }}" > {{ $zo->name }} </option>
+                                                                  <option value="{{ $zo->name }}" > {{ $zo->name }} </option>
                                                                 @endforeach    
                                                              </select>
 
@@ -352,10 +351,8 @@
                                                 <label for="validationCustom1"
                                                     class="col-xl-2 col-md-2"><span>*</span>Profile Image</label>
                                                 <div class="col-xl-10 col-md-10">
-                                                    <input class="form-control" id="fileUpload" type="file" 
+                                                    <input class="form-control" id="fileUpload" type="file"
                                                         name="profile_image" multiple accept="image/*,.pdf" />
-                                                        <input type="hiden" id="oldprofile_image" name="oldprofile_image" value={{$vendorcreate->profile_image}}>
-
                                                     <div id="image-holder"></div>
                                                 </div>
                                             </div>
@@ -363,10 +360,8 @@
                                                 <label for="validationCustom1"
                                                     class="col-xl-2 col-md-2"><span>*</span>GST</label>
                                                 <div class="col-xl-10 col-md-10">
-                                                    <input class="form-control" id="fileUpload1" type="file" 
+                                                    <input class="form-control" id="fileUpload1" type="file"
                                                         name="gst" multiple accept="image/*,.pdf"/>
-                                                        <input type="hiden" id="oldgst" name="oldgst" value={{$vendorcreate->gst}}>
-                                                        
                                                     <div id="image-holder1"></div>
                                                 </div>
                                             </div>
@@ -375,9 +370,8 @@
                                                 <label for="validationCustom1"
                                                     class="col-xl-2 col-md-2"><span>*</span>Other Documents</label>
                                                 <div class="col-xl-10 col-md-10">
-                                                    <input class="form-control" id="fileUpload1" type="file" 
+                                                    <input class="form-control" id="fileUpload1" type="file"
                                                         name="other_documents" multiple accept="image/*,.pdf" />
-                                                        <input type="hiden" id="oldother_documents" name="oldother_documents" value={{$vendorcreate->other_documents}}>
                                                     <div id="image-holder1"></div>
                                                 </div>
                                             </div>
@@ -391,22 +385,19 @@
                                                         <div class="col-xl-8 col-md-8">
                                                             @php
                                                                 $pack = App\Models\vendor\packages::where('status', '=', '1')->get();
-                                                             
                                                             @endphp
 
                                                             <select class="custom-select w-100 form-control"
                                                                 name="package" id="package">
-                                                                {{-- <option value="{{$vendorcreate->package_id}}" selected hidden>
+                                                                <option value="{{$vendorcreate->package_id}}" selected hidden>
                                                                     {{$vendorcreate->package_id}}
-                                                                </option> --}}
-                                                                {{-- <option value=""  hidden>Select Package
-                                                                </option> --}}
+                                                                </option>
+                                                                <option value=""  hidden>Select Package
+                                                                </option>
 
                                                                 @foreach ($pack as $pack)
-                                                                    
-                                                                    <option value="{{ $pack->id }}" {{ $pack->id == $vendorcreate->package_id ? 'selected' : ''}}>{{ $pack->name }}
+                                                                    <option value="{{ $pack->id }}">{{ $pack->name }}
                                                                     </option>
-                                                                    
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -440,7 +431,8 @@
                                                         <label for="validationCustom0" class="col-xl-4 col-md-4">++
                                                             Days</label>
                                                         <div class="col-xl-8 col-md-8">
-                                                            <input class="form-control" id="grace_days" type="text" value={{$vendorcreate->grace_days}} name="grace_days">
+                                                            <input class="form-control" id="grace_days" type="text" value={{$vendorcreate->grace_days}}
+                                                                readonly name="grace_days">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -476,7 +468,8 @@
                                                         <label for="validationCustom0" class="col-xl-4 col-md-4">ADD
                                                             Wallets</label>
                                                         <div class="col-xl-8 col-md-8">
-                                                            <input class="form-control" id="wallet" type="text" value={{$vendorcreate->wallet}}  name="wallet">
+                                                            <input class="form-control" id="wallet" type="text" value={{$vendorcreate->wallet}}
+                                                                readonly name="wallet">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -487,7 +480,7 @@
                                                         <label for="validationCustom0"
                                                             class="col-xl-4 col-md-4">Commission %</label>
                                                         <div class="col-xl-8 col-md-8">
-                                                            <input class="form-control" id="commission" value={{$vendorcreate->commission}}
+                                                            <input class="form-control" readonly id="commission" value={{$vendorcreate->commission}}
                                                                 type="text" name="commission">
                                                         </div>
                                                     </div>
@@ -497,22 +490,8 @@
                                                 <label for="validationCustom1"
                                                     class="col-xl-2 col-md-2">Description</label>
                                                 <div class="col-xl-10 col-md-10">
-                                                        
-                                                    
-                                                    <textarea class="form-control"  rows="3" id="description" name="description"  type="text" name="description">{{ $vendorcreate->description }}</textarea>
-                                                    {{-- @php
-                                                        $pack1 = App\Models\vendor\packages::where('status', '=', '1')->get();
-                                                        
-                                                        @endphp --}}
-                                                     {{-- @foreach ($pack1 as $packs)
-                                                            @if($packs->id == $vendorcreate->package_id)
-                                                            <textarea class="form-control"  rows="3" id="description" name="description"  type="text" name="description" value="{{ $packs->description }}">{{ $packs->description }}</textarea>
-                                                            @endif
-                                                     @endforeach --}}
-                                                    {{-- @if($pack1->id == $vendorcreate->package_id)
-
-                                                        <textarea class="form-control"  rows="3" id="description" name="description"  type="text" name="description">{{ $pack1->description }}</textarea>
-                                                    @endif --}}
+                                                    <textarea class="form-control" readonly rows="3" id="description" value={{$vendorcreate->description}}
+                                                     type="text" name="description"></textarea>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
@@ -545,15 +524,16 @@
                                                         <label for="validationCustom0" class="col-xl-3 col-md-3"> Account
                                                             Holder Name</label>
                                                         <div class="col-xl-9 col-md-9">
-                                                            <input class="form-control" id="bank_name" name="bank_name" type="text"  value={{$vendorcreate->bank_name}}>
-                                                          </div>
+                                                            <input class="form-control" id="bank_name" type="text"  value={{$vendorcreate->bank_name}}
+                                                                name="bank_name">
+                                                        </div>
                                                     </div>
 
                                                     <div class="form-group row">
                                                         <label for="validationCustom0" class="col-xl-3 col-md-3"> Account
                                                             Number</label>
                                                         <div class="col-xl-9 col-md-9">
-                                                            <input class="form-control" id="ac_no" name="ac_no" type="text" value={{$vendorcreate->ac_no}}
+                                                            <input class="form-control" id="ac_no" type="text" value={{$vendorcreate->ac_no}}
                                                                 name="ac_no">
                                                         </div>
                                                     </div>
@@ -562,17 +542,17 @@
                                                         <label for="validationCustom0" class="col-xl-3 col-md-3"> Confirm
                                                             Account Number</label>
                                                         <div class="col-xl-9 col-md-9">
-                                                            <input class="form-control" id="ac_no1"   name="ac_no1" type="text" value={{$vendorcreate->ac_no1}}
-                                                                name="ac_no1" onkeyup="validate_acno()">
+                                                            <input class="form-control" id="ac_no1" type="text" value={{$vendorcreate->ac_no1}}
+                                                                name="ac_no1">
                                                         </div>
-                                                        <span id="wrong_ac_no_alert"></span>
                                                     </div>
 
                                                     <div class="form-group row">
                                                         <label for="validationCustom0" class="col-xl-3 col-md-3"> IFSC
                                                             Code </label>
                                                         <div class="col-xl-9 col-md-9">
-                                                            <input class="form-control" id="ifsc"   name="ifsc"  type="text" value = {{$vendorcreate->ifsc}}>
+                                                            <input class="form-control" id="ifsc" type="text" value={{$vendorcreate->ifsc}}
+                                                                name="ifsc">
                                                         </div>
                                                     </div>
                                                     <hr>
@@ -583,7 +563,7 @@
                                                                 width="100px">
                                                         </div>
                                                         <div class="col-xl-9 col-md-9">
-                                                            <input class="form-control" id="upi"  name="upi" type="text" value={{ $vendorcreate->upi }}
+                                                            <input class="form-control" id="ifsc" type="text" value={{$vendorcreate->upi}}
                                                                 name="upi">
                                                         </div>
                                                     </div>
@@ -598,16 +578,16 @@
                                                 <div class=" mt-5">
                                                     <div class="row">
                                                         <div class="col-md-3">
-                                                            
+
                                                             <input type="checkbox" class="form-check-input"
-                                                                id="check1" name="option1" {{ $vendorcreate->option1 == 'mobile' ? 'checked': '' }}     value="mobile">
+                                                                id="check1" name="option1" value="mobile">
                                                             <label class="form-check-label fw-bold" for="check1">Mobile
                                                                 support</label>
                                                         </div>
 
                                                         <div class="col-md-3">
                                                             <input type="checkbox" class="form-check-input"
-                                                                id="check2" name="option2"  {{ $vendorcreate->option2 == 'delivery' ? 'checked': '' }}   value="delivery">
+                                                                id="check2" name="option2" value="delivery">
                                                             <label class="form-check-label fw-bold"
                                                                 for="check2">Delivery
                                                                 support</label>
@@ -625,9 +605,7 @@
                                                         <div class="">
 
                                                             <button class="btn  px-5 btn-lg btn-primary" type="submit">Update</button>
-                                                           <a href="{{ url('vendor/list') }}"> 
-                                                            <button class="btn btn-lg btn-secondary px-5" type="button" id="close" name="close">Close</button>
-                                                        </a>
+                                                            <button class="btn btn-lg btn-secondary px-5" type="button">Close</button>
                                                         </div>
                                                     </div>
                                                     
@@ -706,7 +684,7 @@
                 //alert(package);
                 if (package) {
                     $.ajax({
-                        url: "{{ route('EAjaxpackage') }}",
+                        url: "{{ route('Ajaxpackage') }}",
                         type: "POST",
                         data: {
                             "_token": "{{ csrf_token() }}",
@@ -764,58 +742,5 @@
 
    $('#datePicker').val(today);
 });
-
-
-
-
-            /*Password valitation*/
-            function validate_password() {
-            
-            var pass = document.getElementById('pass').value;
-            var confirm_pass = document.getElementById('confirm_pass').value;
-            if (pass != confirm_pass) {
-                document.getElementById('wrong_pass_alert').style.color = 'red';
-                document.getElementById('wrong_pass_alert').innerHTML
-                    = '☒ Use same password';
-                document.getElementById('create').disabled = true;
-                document.getElementById('create').style.opacity = (0.4);
-            } else {
-                document.getElementById('wrong_pass_alert').style.color = 'green';
-                document.getElementById('wrong_pass_alert').innerHTML =
-                    '🗹 Password Matched';
-                document.getElementById('create').disabled = false;
-                document.getElementById('create').style.opacity = (1);
-            }
-            }
-            /*Account no valitation*/
-
-            function validate_acno() {
-
-
-            var ac_no = document.getElementById('ac_no').value;
-            var ac_no1 = document.getElementById('ac_no1').value;
-            if (ac_no != ac_no1) {
-                document.getElementById('wrong_ac_no_alert').style.color = 'red';
-                document.getElementById('wrong_ac_no_alert').innerHTML
-                    = '☒ Use same Acount number';
-                document.getElementById('create').disabled = true;
-                document.getElementById('create').style.opacity = (0.4);
-            } else {
-                document.getElementById('wrong_ac_no_alert').style.color = 'green';
-                document.getElementById('wrong_ac_no_alert').innerHTML =
-                    '🗹 Acount number Matched';
-                document.getElementById('create').disabled = false;
-                document.getElementById('create').style.opacity = (1);
-            }
-            }
-
-            function wrong_ac_no_alert() {
-            if (document.getElementById('ac_no').value != "" &&
-                document.getElementById('ac_no1').value != "") {
-                alert("Your response is submitted");
-            } else {
-                alert("Please fill all the fields");
-            }
-            }
     </script>
 @endpush

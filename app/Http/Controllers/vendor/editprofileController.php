@@ -4,7 +4,6 @@ namespace App\Http\Controllers\vendor;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use App\Models\User;
 
 
@@ -17,12 +16,13 @@ use Flasher\Prime\FlasherInterface;
 use DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB as FacadesDB;
-class VendorcreateController extends Controller
+
+class editprofileController extends Controller
 {
 
-   private $PROFILE_IMAGE_PATH = "assets/images/vendor/profile";
-   private $GST_IMAGE_PATH = "assets/images/vendor/gst";
-   private $OTHER_IMAGE_PATH = "assets/images/vendor/other";
+    private $PROFILE_IMAGE_PATH = "assets/images/vendor/profile";
+    private $GST_IMAGE_PATH = "assets/images/vendor/gst";
+    private $OTHER_IMAGE_PATH = "assets/images/vendor/other";
     /**
      * Display a listing of the resource.
      *
@@ -30,27 +30,41 @@ class VendorcreateController extends Controller
      */
     public function index()
     {
-        $package = packages::All();
-        $route=Route::all();
-        $Zonal=Zonal::all();
-        return view('layout.admin.vendor.vendor-create')->with(
-        [
-                "package", $package,
-                "route" => $route,
-                "zone" =>$Zonal
-        ]
-        );
+        //
     }
 
-     public function list()
-     {
-        $vendorlist = vendorcreate::All();
-       // return view('layout.admin.vendor.list')->with("vendorlist");
-        return view('layout.admin.vendor.vendor-list')->with("vendorlist",$vendorlist);
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
 
-     }
-    public function Ajaxpackage(Request $request)
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+    public function EAjaxpackage(Request $request)
     {
 
         // return "jhgf";
@@ -75,170 +89,6 @@ class VendorcreateController extends Controller
         }
     }
 
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request, FlasherInterface $flasher)
-    {
-
-
-        $vendor = new vendorcreate();
-        $statement = FacadesDB::select("SHOW TABLE STATUS LIKE 'vendor_details'");
-        $stmt = FacadesDB::select("SHOW TABLE STATUS LIKE 'users'");
-
-       // echo $statement;
-         $user_id = $statement[0]-> Auto_increment;
-         $id = $stmt[0]-> Auto_increment;
-    //   dd($user_id);
-       // exit();
-
-       
-
-        $profile_file = $request->profile_image;
-        if ($profile_file !== null) {
-        $profilename = ImageUploadHelper::storeImage($profile_file, $this->PROFILE_IMAGE_PATH);
-        }
-        else
-        {
-            $profilename ="";
-        }
-
-        $gst_file = $request->gst;
-        if ($gst_file !== null) {
-        $gst_file_name = ImageUploadHelper::storeImage($gst_file, $this->GST_IMAGE_PATH);
-        }
-        else{
-            $gst_file_name ="";
-        }
-
-        $other_file = $request->other_documents;
-        if ($other_file !== null) {
-        $othername = ImageUploadHelper::storeImage($other_file, $this->OTHER_IMAGE_PATH);
-        }
-        else{
-            $othername ="";
-        }
-
-        try {
-           /// $vendor->shop_name = $request->shop_name;
-           //$vendor->id = $user_id;
-         $ven = $vendor->user_id = $user_id;
-            $vendor->created_by = $request->created_by;
-            $vendor->username = $request->username;
-            $vendor->pass = $request->pass;
-            if($request->pass == $request->pass1){
-                $vendor->pass1 = $request->pass1;
-            }
-            
-            $vendor->shop_name = $request->shop_name;
-            $vendor->owner_name = $request->owner_name;
-            $vendor->business_category = $request->business_category;
-            $vendor->email = $request->email;
-            $vendor->mobile_number1 = $request->mobile_number1;
-            $vendor->mobile_number2 = $request->mobile_number2;
-            $vendor->address = $request->address1;
-            $vendor->address1 = $request->address2;
-            $vendor->state = $request->state;
-            $vendor->city = $request->city;
-            $vendor->pincode = $request->pincode;
-            $vendor->zone = $request->zone;
-            $vendor->route = $request->route;
-            $vendor->location_map = $request->location_map;
-            $vendor->aadhar_no = $request->aadhar_no;
-            $vendor->gst_number = $request->gst_number;
-
-
-            $vendor->profile_image = $profilename;
-            $vendor->gst = $gst_file_name;
-            $vendor->other_documents = $othername;
-
-
-            $vendor->package_id = $request->package;
-            // $vendor->package_name=$request->package_name;
-            $vendor->purchase_date  = $request->purchase_date;
-            $vendor->expired_date = $request->expired_date;
-            $vendor->next_renewal_date = $request->next_renewal_date;
-            
-            $vendor->wallet = $request->wallet;
-            $vendor->commission = $request->commission;
-            $vendor->description = $request->description;
-            $vendor->grace_days = $request->grace_days;
-            $vendor->validity = $request->validity;
-            $vendor->status = 1;
-            $vendor->flag = 1;
-
-
-            $vendor->bank_name = $request->bank_name;
-            $vendor->ac_no = $request->ac_no;
-            if($request->ac_no == $request->ac_no1){
-            $vendor->ac_no1 = $request->ac_no1;
-            }
-            $vendor->ifsc = $request->ifsc;
-            $vendor->upi = $request->upi;
-            $vendor->option1 = $request->option1;
-            $vendor->option2 = $request->option2;
-            $vendor->comments = $request->comments;
-
-            // echo $vendor;
-            // exit();
-          $vedorregisterd = $vendor->save();
-
-            // VENDOR REGISTER
-        if($vedorregisterd){
-            $user = new User();
-            $pass   =  Hash::make($request->pass1);
-            //$user->id = $id;
-            //$user->admin_id = 0;
-            $user->login_id = $ven;
-            $user->name     = $request->created_by;
-            $user->firstName = $request->shop_name;
-            $user->lastName =  $request->owner_name;
-            $user->email =   $request->email;
-            $user->username = $request->username;
-            $user->password = $pass;
-            $user->level = 0;
-            $user->status = 2;
-            $user->save();
-        }else{
-           return 'failde'   ;
-           
-        }
-            $flasher->addSuccess('vendor Information has been saved successfully!');
-            return redirect()->route('vendor-list');
-        
-
-        } catch (\Throwable $th) {
-            //$flasher->addError('Something Error!!');
-            $flasher->addError('Something Error!! =>' . $th);
-            return redirect()->route('vendorcreate.index');
-        }
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -253,7 +103,7 @@ class VendorcreateController extends Controller
         $route=Route::all();
         $Zonal=Zonal::all();
 
-        return view('layout.admin.vendor.vendor-edit')
+        return view('layout.vendor.vendor.vendor-edit')
         ->with([
            "vendorcreate" => $vendorcreate,
            "package"=> $package,
@@ -423,11 +273,11 @@ class VendorcreateController extends Controller
 
             
             $flasher->addSuccess('vendor Information has been updated successfully!');
-            return redirect()->route('vendor-list');
+            return redirect()->route('vendordashboard',$id);
         } catch (\Throwable $th) {
             //$flasher->addError('Something Error!!');
             $flasher->addError('Something Error!! =>' . $th);
-             return redirect()->route('vendorcreate.edit');
+             return redirect()->route('editprofile.edit');
         }
         
     }
@@ -438,35 +288,8 @@ class VendorcreateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id, FlasherInterface $flasher)
+    public function destroy($id)
     {
-
-        try {
-            $vendor_image = vendorcreate::find($id);
-
-             $profile_image = $this->PROFILE_IMAGE_PATH . "/" . $vendor_image->profile_image;
-             $gst = $this->GST_IMAGE_PATH . "/" . $vendor_image->gst;
-             $other_documents = $this->OTHER_IMAGE_PATH . "/" . $vendor_image->other_documents;
-    
-            if (file_exists($profile_image)) unlink($profile_image);
-            if (file_exists($gst)) unlink($gst);
-            if (file_exists($other_documents)) unlink($other_documents);
-         
-
-            vendorcreate::where("id", $id)->delete();
-            // dd($profile_image);
-            $flasher->addsuccess('Product Removed!');
-            return redirect()->route('vendor-list');
-        }
-        catch(Throwable $th) {
-            $flasher->addError('Something Error!');
-            return redirect()->route('vendor-list');
-        }
-    }
-
-    public function editprofile(Request $request, $loginid)
-    {
-    echo $loginid;
-    exit;
+        //
     }
 }

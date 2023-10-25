@@ -558,8 +558,10 @@
                                         }
                                         
                                         if( $offers->isEmpty())
-                                            {
+                                            {                                   
                                                 $amt = $selprice;
+                                               
+                                                
                                                 ?>
 
 
@@ -594,16 +596,29 @@
                                                         @else
                                                         @endif
                                                     </div>
-                                                <div class="product-buttons">
-                                                    <a href="" id="cartbook" 
-                                                    class="btn btn-solid hover-solid btn-animation"><i class=""
-                                                        aria-hidden="true"></i> Buy Now</a>
-                                                    <a href="" id="cartEffect" 
-                                                        class="btn btn-solid hover-solid btn-animation"><i class="fa fa-shopping-cart me-1"
-                                                            aria-hidden="true"></i> add to cart</a>
-                                                
-                                                </div>
+
+
+                                                <?php
+                                                 $nonofferproducts = App\Models\Products\Products::where('id',$productdetailid)->get();
+                                                 foreach($nonofferproducts as $nonofferproduct)
+                                                                        {
+                                                                        
+                                                                        //$product = App\Models\Products\ProductsDetails::where('id',$productdetailid)->get();
+                                                                        $productdetails = App\Models\Products\ProductsDetails::where('products_id',$nonofferproduct->product_id)->get();
+                                                                        // dd($productdetails);
+                                                                        }
+                                                ?>
                     
+
+
+                                            <input type="text" name="product_size" id="product_size" value="{{$product_det[0]->size}}" class="form-control input-number">
+                                            <input type="text" name="product_color" id="product_color" value="{{$product_det[0]->color}}" class="form-control input-number">
+                                            <input type="text" name="hidden_name" id="product_name" value="{{$product_det[0]->product_name}}" />
+                                            <input type="text" name="hidden_price" id="product_price" value="{{$product_det[0]->retail_price}}" />
+                                            <input type="text" name="product_id" id="product_id" value="{{$product_det[0]->id }}" />
+                                            <input type="text" name="product_image" id="product_image" value="{{$product_det[0]->product_detail_image }}" />
+                                            <input type="text" name="product_qty" id="product_qty" value="{{ $product_det[0]->quantity }}" />
+
                                                 <div class="product-count" style="display:none;">
                                                     <ul>
                                                         <li>
@@ -866,15 +881,15 @@
                                         class="btn btn-solid hover-solid btn-animation"><i class="fa fa-shopping-cart me-1"
                                             aria-hidden="true"></i>{{ $offers[0]->title }}</a> --}}
 
-                                        <input type="text" name="product_size" id="product_size" value="{{$product_det[0]->size}}" class="form-control input-number">
-                                        <input type="text" name="product_color" id="product_color" value="{{$product_det[0]->color}}" class="form-control input-number">
-                                        <input type="text" name="hidden_name" id="product_name" value="{{$product_det[0]->product_name}}" />
-                                        <input type="text" name="hidden_price" id="product_price" value="{{$product_det[0]->retail_price}}" />
-                                        <input type="text" name="product_id" id="product_id" value="{{$product_det[0]->id }}" />
-                                        <input type="text" name="product_image" id="product_image" value="{{$product_det[0]->product_detail_image }}" />
-                                        <input type="text" name="product_qty" id="product_qty" value="{{ $product_det[0]->quantity }}" />
+                                     
                                     </div>
-
+                                    <input type="text" name="product_size" id="product_size" value="{{$product_det[0]->size}}" class="form-control input-number">
+                                    <input type="text" name="product_color" id="product_color" value="{{$product_det[0]->color}}" class="form-control input-number">
+                                    <input type="text" name="hidden_name" id="product_name" value="{{$product_det[0]->product_name}}" />
+                                    <input type="text" name="hidden_price" id="product_price" value="{{$product_det[0]->retail_price}}" />
+                                    <input type="text" name="product_id" id="product_id" value="{{$product_det[0]->id }}" />
+                                    <input type="text" name="product_image" id="product_image" value="{{$product_det[0]->product_detail_image }}" />
+                                    <input type="text" name="product_qty" id="product_qty" value="{{ $product_det[0]->quantity }}" />
 
 
                                     <div class="product-button" id="product-button">
@@ -905,7 +920,7 @@
                                             @else
                                             @endif
                                         </div>
-                                    <div class="product-buttons">
+                                    {{-- <div class="product-buttons">
                                         <a href="" id="cartbook" 
                                         class="btn btn-solid hover-solid btn-animation"><i class=""
                                             aria-hidden="true"></i> Buy Now</a>
@@ -913,7 +928,7 @@
                                             class="btn btn-solid hover-solid btn-animation"><i class="fa fa-shopping-cart me-1"
                                                 aria-hidden="true"></i> add to cart</a>
                                     
-                                    </div>
+                                    </div> --}}
 
                                     <div class="product-count" style="display:none;">
                                         <ul>
@@ -952,7 +967,16 @@
                                     </div>
                                 <?php
                                 }
-                                ?>    
+                                ?>
+                            <div class="product-buttons">
+                                <a href="" id="cartbook" 
+                                class="btn btn-solid hover-solid btn-animation"><i class=""
+                                    aria-hidden="true"></i> Buy Now</a>
+                                <a href="" id="cartEffect" 
+                                    class="btn btn-solid hover-solid btn-animation"><i class="fa fa-shopping-cart me-1"
+                                        aria-hidden="true"></i> add to cart</a>
+                            
+                            </div>    
                                 </form>
                                 </div>
                             </div>
@@ -1453,8 +1477,13 @@
                 dataType: "json",
                  success: function (data) {
                      console.log(data);
-                    alert(data.offername);
-                  //    console.log(data.pro_sizedetails[0].selling_price);
+                   
+                   if(data.offername == null)
+                   {
+                    
+                   
+                   alert('not offeer');
+                    //  console.log(data.pro_sizedetails[0].selling_price);
 
                     // console.log(data.pro_color[0].product_detail_image);
                     
@@ -1482,6 +1511,7 @@
                      $('#price').html('<h3 class="price-detail">Rs' +data.pro_sizedetails[0].selling_price+ ' <del>Rs'+data.pro_sizedetails[0].retail_price+'</del></h3> <input type="hidden"  id="product_price" name="product_price" class="form-control input-number" value="'+data.pro_sizedetails[0].selling_price+' ">');
 
                     }
+                   }
                     //  $('.color-variant').html('<li id ="bg-light0" class="bg-light0" value ="'+data.pro_color[0].id+'">'+data.pro_color[0].color+'</li>');
                       var csize = document.getElementById("bg-light0"+size).value;
                      alert(csize);

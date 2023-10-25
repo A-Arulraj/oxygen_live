@@ -51,9 +51,9 @@ $(document).on('click','#cartEffect', function(e){
     //  alert('test');
 
     $(".error-message").hide();
-    $(".product-buttons").hide();
-    // $(".product-button").show();
-     $('#product-button').html('<a href="" id="cartEffect" class="btn btn-solid hover-solid btn-animation"><i class="fa fa-shopping-cart me-1" aria-hidden="true"></i> ADDED TO CART</a>');
+    // $(".product-buttons").hide();
+    $(".product-button").show();
+    // $('#product-button').html('<a href="" id="cartEffect" class="btn btn-solid hover-solid btn-animation"><i class="fa fa-shopping-cart me-1" aria-hidden="true"></i> ADDED TO CART</a>');
                                 
     var product_id = $('#product_id').val();
     var product_name = $('#product_name').val();
@@ -108,9 +108,9 @@ $(document).on('click','#cartbook', function(e){
     //alert('test');
 
     $(".error-message").hide();
-    $(".product-buttons").hide();
+    // $(".product-buttons").hide();
     $(".product-button").show();
-    $('#product-button').html('<a href="" id="cartbook" class="btn btn-solid hover-solid btn-animation"><i class="" aria-hidden="true"></i> Buy Now</a> <a href="" id="cartEffect" class="btn btn-solid hover-solid btn-animation"><i class="fa fa-shopping-cart me-1" aria-hidden="true"></i> ADD TO CART</a>');
+    // $('#product-button').html('<a href="" id="cartbook" class="btn btn-solid hover-solid btn-animation"><i class="" aria-hidden="true"></i> Buy Now</a> <a href="" id="cartEffect" class="btn btn-solid hover-solid btn-animation"><i class="fa fa-shopping-cart me-1" aria-hidden="true"></i> ADD TO CART</a>');
                             
     var product_id = $('#product_id').val();
     var product_name = $('#product_name').val();
@@ -120,8 +120,8 @@ $(document).on('click','#cartbook', function(e){
     var product_price = $('#product_price').val();
     var fixeddiscount = $('#fixeddiscount').val();
     // alert(fixeddiscount);
-    alert(product_size);
-    alert(product_color);
+    // alert(product_size);
+    // alert(product_color);
     if(fixeddiscount != 'fixeddiscount')
     {
     var product_price = $('#product_price').val();

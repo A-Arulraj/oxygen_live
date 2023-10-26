@@ -100,11 +100,11 @@
                          <div class="pt-1">
                             <form action="{{ route('productsearchdetails') }}" class="form_search m-auto" role="form" method="post">
                                   @csrf
-                            <input id="keywords" name ="keywords" type="search" placeholder="Search anything here..." class="nav-search nav-search-field" aria-expanded="true">
-                            <button type="submit" name="nav-submit-button" class="btn-search">
-                                <i class="ti-search"></i>
-                            </button>
-                        </form>
+                                <input id="keywords" name ="keywords" type="search" placeholder="Search anything here..." class="nav-search nav-search-field" aria-expanded="true">
+                                <button type="submit" name="nav-submit-button" class="btn-search">
+                                    <i class="ti-search"></i>
+                                </button>
+                            </form>
                             </div></div>
                             <div class="col-md-3 col-sm-6 col-6">
                         <div class="menu-right">

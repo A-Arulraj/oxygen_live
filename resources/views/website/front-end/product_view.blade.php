@@ -611,13 +611,13 @@
                     
 
 
-                                            <input type="text" name="product_size" id="product_size" value="{{$product_det[0]->size}}" class="form-control input-number">
-                                            <input type="text" name="product_color" id="product_color" value="{{$product_det[0]->color}}" class="form-control input-number">
-                                            <input type="text" name="hidden_name" id="product_name" value="{{$product_det[0]->product_name}}" />
-                                            <input type="text" name="hidden_price" id="product_price" value="{{$product_det[0]->retail_price}}" />
-                                            <input type="text" name="product_id" id="product_id" value="{{$product_det[0]->id }}" />
-                                            <input type="text" name="product_image" id="product_image" value="{{$product_det[0]->product_detail_image }}" />
-                                            <input type="text" name="product_qty" id="product_qty" value="{{ $product_det[0]->quantity }}" />
+                                            <input type="hidden" name="product_size" id="product_size" value="{{$product_det[0]->size}}" class="form-control input-number">
+                                            <input type="hidden" name="product_color" id="product_color" value="{{$product_det[0]->color}}" class="form-control input-number">
+                                            <input type="hidden" name="hidden_name" id="product_name" value="{{$product_det[0]->product_name}}" />
+                                            <input type="hidden" name="hidden_price" id="product_price" value="{{$product_det[0]->retail_price}}" />
+                                            <input type="hidden" name="product_id" id="product_id" value="{{$product_det[0]->id }}" />
+                                            <input type="hidden" name="product_image" id="product_image" value="{{$product_det[0]->product_detail_image }}" />
+                                            <input type="hidden" name="product_qty" id="product_qty" value="{{ $product_det[0]->quantity }}" />
 
                                                 <div class="product-count" style="display:none;">
                                                     <ul>
@@ -883,13 +883,13 @@
 
                                      
                                     </div>
-                                    <input type="text" name="product_size" id="product_size" value="{{$product_det[0]->size}}" class="form-control input-number">
-                                    <input type="text" name="product_color" id="product_color" value="{{$product_det[0]->color}}" class="form-control input-number">
-                                    <input type="text" name="hidden_name" id="product_name" value="{{$product_det[0]->product_name}}" />
-                                    <input type="text" name="hidden_price" id="product_price" value="{{$product_det[0]->retail_price}}" />
-                                    <input type="text" name="product_id" id="product_id" value="{{$product_det[0]->id }}" />
-                                    <input type="text" name="product_image" id="product_image" value="{{$product_det[0]->product_detail_image }}" />
-                                    <input type="text" name="product_qty" id="product_qty" value="{{ $product_det[0]->quantity }}" />
+                                    <input type="hidden" name="product_size" id="product_size" value="{{$product_det[0]->size}}" class="form-control input-number">
+                                    <input type="hidden" name="product_color" id="product_color" value="{{$product_det[0]->color}}" class="form-control input-number">
+                                    <input type="hidden" name="hidden_name" id="product_name" value="{{$product_det[0]->product_name}}" />
+                                    <input type="hidden" name="hidden_price" id="product_price" value="{{$product_det[0]->retail_price}}" />
+                                    <input type="hidden" name="product_id" id="product_id" value="{{$product_det[0]->id }}" />
+                                    <input type="hidden" name="product_image" id="product_image" value="{{$product_det[0]->product_detail_image }}" />
+                                    <input type="hidden" name="product_qty" id="product_qty" value="{{ $product_det[0]->quantity }}" />
 
 
                                     <div class="product-button" id="product-button">
@@ -1260,15 +1260,15 @@
             </div>
             <div class="row search-product">
                 <?php
-              // dd($product);
+                // dd($product);
                 foreach ($product as $pro) {
                
 
-                    // dd($pro->products_id);   
-                $productrating = App\Models\User\rating::where('products_id',$pro->products_id)->get();
-              //  dd($productrating[0]->star_rating);
+                    //  dd($pro->product_id);   
+                $productrating = App\Models\User\rating::where('products_id',$pro->product_id)->get();
+                // dd($productrating);
                 foreach ($productrating as  $value) {
-                    //dd($value->star_rating);
+                //    dd($value->star_rating);
                 
 
                
@@ -1279,21 +1279,24 @@
                                 class="fa fa-star"></i> <i class="fa fa-star"></i> <i
                                 class="fa fa-star"></i> <i class="fa fa-star"></i> --}}
                                 <div class="rate">
-                                    <?php
+                                    <span>{{ $value->comments }}</span><br>
+                                    <span>{{ $value->customer_name }}</span>
+                                     
+                                   <?php
                                     for($i=0; $i< $value->star_rating; $i++)
                                           { 
                                             ?>
+                                       
                                     <input type="radio" id="star1" class="rate" name="rating" value="1"/>
                                     <label for="star1" style="color:#ffcc00;" title="text">1 star</label>
-                                   
+                                    
                                     {{-- <label for="" title="text">{{ $productrating[0]->comments }}</label> --}}
                                 <?php     
                                 
                                     }
                                      ?>
-                                      <span>{{ $value->comments }}</span><br>
-                                      <span>{{ $value->customer_name }}</span>
-                                 </div>
+                                      </div>  
+                                 
 
                             </div>
                     </div>
@@ -1466,7 +1469,7 @@
         
        
             var size = $(this).val();
-            alert(size);
+            
            $.ajax({
                 url: '{{route("sizedetails", "size")}}',
                 type: "GET",
@@ -1514,12 +1517,9 @@
                    }
                     //  $('.color-variant').html('<li id ="bg-light0" class="bg-light0" value ="'+data.pro_color[0].id+'">'+data.pro_color[0].color+'</li>');
                       var csize = document.getElementById("bg-light0"+size).value;
-                     alert(csize);
                       var sizee = document.getElementById("sizee"+size).value;
-                      alert(sizee);
                       const color =  document.getElementById("product_color"+size).value;
-                      alert(color);
-                    const elements = document.querySelectorAll('#bg-light0'+size);
+                      const elements = document.querySelectorAll('#bg-light0'+size);
                      $('#product_size').val(sizee);
                      $('#product_color').val(color);
                      $('.licolor').removeClass('active');

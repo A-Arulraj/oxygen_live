@@ -12,7 +12,8 @@ use Illuminate\Http\Request;
 use App\Models\Category\CategoryMain;
 use App\Models\Category\Category;
 use App\Models\Category\CategorySub;
-
+use App\Models\User\wishlist;
+use Illuminate\Support\Facades\Auth;
 
 class addtocartController extends Controller
 {
@@ -183,6 +184,7 @@ class addtocartController extends Controller
     {
     //    echo 'test';
         $pro_id = $request->size;
+
         
         $pro_sizedetails =  ProductsDetails::where('id',$pro_id)->get();
         
@@ -228,5 +230,25 @@ class addtocartController extends Controller
          $bidamount->flag = 1;
          $bidamount->save(); 
          return redirect()->back()->with('flash_msg_success','Your Bid value has been submitted Successfully,');
+     }
+     public function addtowishlist(Request $request, $product_id, $product_name, $product_price, $vendar_name, $vendar_id)
+     {
+
+        $wishlist = new wishlist();
+
+    //    $user_id = Auth::user()->id;
+      $id   = Auth::user()->login_id;
+      $user_id =  session('userId');
+      $wishlist->login_id =$id;
+    //   $wishlist->user_id = $user_id;
+       
+      $wishlist->product_id = $product_id;
+      $wishlist->vendar_name= $vendar_name;
+      $wishlist->product_name =  $product_name;
+      $wishlist->price = $product_price;
+      $wishlist->vendar_id =  $vendar_id;
+      $wishlist->flag = '1'; 
+      $wishlist->save();
+      return redirect()->back()->with('flash_msg_success','Your items are  Added Successfully to Wishlist,');
      }
 }

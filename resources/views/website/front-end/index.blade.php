@@ -125,12 +125,25 @@
                                                             <div class="cart-info cart-wrap">
                                                     <!--            <button data-bs-toggle="modal" data-bs-target="#addtocart"-->
                                                     <!--title="Add to cart"><i class="ti-shopping-cart"></i></button>-->
-                                    <a href="javascript:void(0)" title="Add to Wishlist" tabindex="0"><i
-                                            class="ti-heart" aria-hidden="true"></i></a>
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" title="Quick View"
-                                        tabindex="0"><i class="ti-search" aria-hidden="true"></i></a>
-                                    <a href="compare.html" title="Compare" tabindex="0"><i class="ti-reload"
-                                            aria-hidden="true"></i></a>
+
+
+                                        <?php
+                                         $vendarname = App\Models\User::where('login_id',$product->created_by)->first(); 
+                                         
+                                         $productdetails = App\Models\Products\ProductsDetails::where('products_id',$product->id)->first();   
+                                         $disc = App\Models\Offer\Offer::where('id',$product->offers)->first();
+                                         if($product->product_id == $productdetails->products_id)
+                                         {                    // dd($disc);
+                                         ?>                                                    
+                                        <a href="{{ route('addtowishlist', ['produst_id' => $product->id,'produst_name' => $product->product_name,'produst_price' => $productdetails->selling_price,'vendar_name'=>$vendarname->name, 'vendar_id'=>$vendarname->id ]) }}" title="Add to Wishlist" tabindex="0"><i
+                                                class="ti-heart" aria-hidden="true"></i></a>
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" title="Quick View"
+                                            tabindex="0"><i class="ti-search" aria-hidden="true"></i></a>
+                                        <a href="compare.html" title="Compare" tabindex="0"><i class="ti-reload"
+                                                aria-hidden="true"></i></a>
+                                            <?php
+                                            }
+                                           ?>
                                 </div>
                            
                     <!--<a class="add-button" href="{{ route('addtocart', $product->product_id ) }}">View Product</a>-->
@@ -142,10 +155,7 @@
                         
                          <?php
                             // dd($product);
-                                $vendarname = App\Models\User::where('login_id',$product->created_by)->first();   
-                                $productdetails = App\Models\Products\ProductsDetails::where('products_id',$product->id)->first();   
-                                $disc = App\Models\Offer\Offer::where('id',$product->offers)->first();
-                                // dd($disc);
+                              
                         
                         
                                 if($product->product_id == $productdetails->products_id)

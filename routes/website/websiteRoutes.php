@@ -121,3 +121,4 @@ Route::get('sizedetails/{size}', [addtocartController::class, 'sizedetails'])->n
 
 Route::get('colorvalue/{colorvalue}', [addtocartController::class, 'colorvalue'])->name('colorvalue');
 Route::post('bidamt', [addtocartController::class, 'bidamount'])->name('bidamt');
+Route::get('addtowishlist/{produst_id}/{produst_name}/{produst_price}/{vendar_name}/{vendar_id}', [addtocartController::class, 'addtowishlist'])->name('addtowishlist'); 

@@ -226,7 +226,7 @@ class AjaxGetProductController extends Controller
 	{
 		
 		$userId = session('userId');
-		//dd($userId);
+		// dd($userId);
 		 $orders = orders::where('User_id',$userId) ->orderBy('id', 'desc')->get(); 
 		 if(sizeof($orders) > 0)
 		 {
@@ -284,13 +284,17 @@ public function ordersreturn($id)
 {
 	$userId = session('userId');
 		//dd($userId);
-		 $orders = orders::where('User_id',$userId) ->orderBy('id', 'desc')->get(); 
-	$orders_product = orders::find($id);
+		 
+	$orders_product = ordersproduct::find($id);
+	$orders = orders::find($id);
 	$orders_id = $orders_product->order_id;
 	$orders_product->order_status = 'Return';
+	$orders->order_status = 'Return';
 	$orders_product->update();
+	$orders->update();
 
-	$orders_product = orders::where('orders_id',$orders_id)->get(); 
+	$orders = orders::where('User_id',$userId) ->orderBy('id', 'desc')->get(); 
+	$orders_product = ordersproduct::where('order_id',$orders_id)->get(); 
 	// return view('website.front-end.orders_status')->
 	return view('website.front-end.orders_details')->
 		 with([
@@ -318,16 +322,22 @@ public function rating(Request $request)
 
 public function orderscancel($id)
 {
-	
+	// dd($id);
 	$userId = session('userId');
 	
-	$orders = orders::where('User_id',$userId) ->orderBy('id', 'desc')->get(); 
+	
+	// dd($orders);
 	$orders_product = ordersproduct::find($id);
+	$orders = orders::find($id);
+	// dd($orders);
 	$orders_id = $orders_product->order_id;
 	$orders_product->order_status = 'Cancel';
+	$orders->order_status = 'Cancel';
 	$orders_product->update();
-
+	$orders->update();
+	// dd($orders_product);
 	$orders_product = ordersproduct::where('order_id',$orders_id)->get(); 
+	$orders = orders::where('User_id',$userId) ->orderBy('id', 'desc')->get(); 
 	// return view('website.front-end.orders_status')->
 	return view('website.front-end.orders_details')->
 		 with([

@@ -2,7 +2,7 @@
 <!-- loader start -->
 <!-- loader end -->
 <!-- header start -->
-<header class="header-style-5  border-style" id="sticky-header">
+<header class="header-style-5  border-style mb-5" id="sticky-header">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">

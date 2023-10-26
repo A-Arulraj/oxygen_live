@@ -9,10 +9,11 @@
    @include('paritials.js.userwebsite.cart_js')
    @include('website.partials.css.frontendcss');
   
+   @include('paritials.website.header')
 
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <style>
-        #loading-container {
+    #loading-container {
        display: none;
        position: fixed;
        top: 0;
@@ -53,10 +54,9 @@
    
    <!-- loader end -->
 
-<!-- header start -->
-   @include('paritials.website.header')
+    <!-- header start -->
     <!--section start-->
-    <section class="cart-section section-b-space">
+    <section class="cart-section section-b-space mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">

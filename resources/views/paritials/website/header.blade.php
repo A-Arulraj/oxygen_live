@@ -15,7 +15,8 @@
   margin-top: 100px;
 }
 </style>
-
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" integrity="sha512-siarrzI1u3pCqFG2LEzi87McrBmq6Tp7juVsdmGY1Dr8Saw+ZBAzDzrGwX3vgxX1NkioYNCFOVC0GpDPss10zQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
 <header id="header" class="header-tools zindex-up header-style top-relative">
     <div class="mobile-fix-option"></div>
     <div style="background-color:#6DECE0" class="logo-menu-part">
@@ -113,14 +114,14 @@
                                 <ul class="header-dropdown">
                                     
                                     <li class="onhover-dropdown mobile-account">
-                                        <img src="{{ asset('frontend_assets/images/icon/user-1.png') }}" alt="">
+                                    <i class="fa fa-user"></i>
                                         <ul class="onhover-show-div">
-                                            <li>
-                                                {{-- <a href="{{ route('userlogin') }}" data-lng="en">
+                                        {{-- <li>
+                                                 <a href="{{ route('userlogin') }}" data-lng="en">
                                                     Login
                                                     
-                                                </a> --}}
-                                            </li>
+                                                </a> 
+                                            </li>--}}
                                             
                                             @if(!empty(session('userId')))
                                             <li><a href="{{route('UserSettings')}}" data-lng="es">user setting</a></li> 
@@ -146,14 +147,10 @@
                                                     
                                                 </a>
                                             </li>
-                                            
-                                            
                                             @endif
                                             
-                                        </ul>
-                                        
-                                          <p>Profile</p>
-                                          
+                                        </ul>                                        
+                                          <p>Profile</p>                                          
                                     </li>
                                   &nbsp;&nbsp;
                                     
@@ -183,7 +180,7 @@
                                             </div>
                                           
                                             <ul class="show-div shopping-cart" id="cart_dt">
-                                                
+                                            
                                                 <li>
                                                     <div class="buttons">
                                                         <a href="{{ route('viewcart') }}" class="view-cart">view cart</a>

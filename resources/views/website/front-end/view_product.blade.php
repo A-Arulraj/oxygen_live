@@ -161,7 +161,7 @@
                                 <h6>120 ratings</h6>
                             </div>
                             <div class="label-section">
-                                <span class="badge badge-grey-color">#1 Best seller</span>
+                                <span class="badge badge-grey-color">#1 Rate seller</span>
                                 {{-- <span class="label-text">in fashion</span> --}}
                                 <a href="javascript:void(0)">Best seller</a>
 

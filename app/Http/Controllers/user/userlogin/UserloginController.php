@@ -79,7 +79,7 @@ class UserloginController extends Controller
             $user->username = $request->username;
             $user->password = $pass;
             $user->level = 0;
-            $user->status = 3;
+            $user->status = 4;
         //    dd($user);
             $user->save();
         }else{

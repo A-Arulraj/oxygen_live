@@ -9,8 +9,7 @@
                         </div>
                         <div class="footer-contant">
                             <div class="footer-logo"><img src="{{ asset('assets/img/logo/logo.png') }}" alt=""></div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                                ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>
+                            <p>-</p>
                             <div class="footer-social">
                                 <ul>
                                     <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
@@ -61,10 +60,10 @@
                             </div>
                             <div class="footer-contant">
                                 <ul class="contact-list">
-                                    <li><i class="fa fa-map-marker"></i>Oxegen Ecommerce   Chennai,  India
+                                    <li><i class="fa fa-map-marker"></i>Oxegen Ecommerce   Trichy,  India
                                     </li>
-                                    <li><i class="fa fa-phone"></i>Call Us: 9876543210</li>
-                                    <li><i class="fa fa-envelope-o"></i>Email Us: <a href="#">Support@Oxegen.com</a></li>
+                                    <li><i class="fa fa-phone"></i>Call Us: 9791676655</li>
+                                    <li><i class="fa fa-envelope-o"></i>Email Us: <a href="#">support@tradebyindia.com</a></li>
                                   
                                 </ul>
                             </div>
@@ -78,7 +77,7 @@
                 <div class="row">
                     <div class="col-xl-6 col-md-6 col-sm-12">
                         <div class="footer-end">
-                            <p>Copyright <i class="fa fa-copyright" aria-hidden="true"></i>   2022 Oxegen. All Rights Reserved</p>
+                            <p>Copyright <i class="fa fa-copyright" aria-hidden="true"></i>   2022 Trade By India. All Rights Reserved</p>
                         </div>
                     </div>
                     <div class="col-xl-6 col-md-6 col-sm-12">

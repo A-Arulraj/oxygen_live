@@ -62,7 +62,7 @@
         outline: none;
         }
         </style>
-    <section class="section-b-space">
+    <section class="section-b-space" style="margin-top: 8rem !important;">
         <div class="container">
             <div class="checkout-page">
                 <div class="checkout-form">
@@ -241,14 +241,14 @@
                                             <li>
                                                 
                                                 <label for="html">Discount</label>
-                                                <span class="count"><input type="text" style ="border: 0px solid; color:grey" class="discount1" name="discount1" id="discount1" value="0"></span>
+                                                <span class="count"><input type="text" readonly style ="border: 0px solid; color:grey" class="discount1" name="discount1" id="discount1" value="0"></span>
                                                 {{-- <span class="count"></span> --}}
                                                 </li>
                                         </ul>
                                         <ul class="total">
                                             <li>Total 
                                                 
-                                                <span class="count1"><input type="text" style ="border: 0px solid; color:grey" class="count1" id="count1" value="Rs {{ $gtot1 +  $shipping}}"><span>
+                                                <span class="count1"><input type="text" readonly style ="border: 0px solid; color:grey" class="count1" id="count1" value="Rs {{ $gtot1 +  $shipping}}"><span>
                                                 {{-- <span class="count" id ="count">Rs {{ $total +  $shipping }}</span>  --}}
                                             </li>
                                         </ul>
@@ -282,16 +282,16 @@
                                                     //  dd($grandtoto);
                                                     ?>
                                                     {{-- @if( $grandtoto > 1000) --}}
-                                                    <label for="Coupon">Coupon Code</label>
+                                                    <!-- <label for="Coupon">Coupon Code</label> -->
                                                         
                                                     {{-- <input type="text" value="" name="couban" id="couban"> --}}
                                                     {{-- @endif --}}
-                                                    <input type="text"
+                                                    <!-- <input type="text"
                                                         class="discount-code" id="discountCode"
                                                         name="discountCode" size="15"
                                                         placeholder="Enter Coupon Code" /><button
                                                         id="btnDiscountAction" type="submit"
-                                                        value="Apply Discount" class="btnDiscountAction">Apply Coupon</button>
+                                                        value="Apply Discount" class="btnDiscountAction">Apply Coupon</button> -->
                                                  
                                                     
                                                 </ul>

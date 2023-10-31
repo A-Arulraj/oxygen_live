@@ -387,15 +387,15 @@
                                         @csrf
                                     
                                     <h2>{{ $product_det[0]->product_name }}</h2>
-                                    <div class="rating-section">
+                                    <!-- <div class="rating-section">
                                         <div class="rating"><i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
                                                 class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i>
                                         </div>
                                         <h6>120 ratings</h6>
-                                    </div>
+                                    </div> -->
                                 {{-- @dd($productdetailid); --}}
                                     <div class="label-section">
-                                        <span class="badge badge-grey-color">#1 Best seller</span>
+                                        <span class="badge badge-grey-color">#1 Rate seller</span>
                                         {{-- <span class="label-text">in fashion</span> --}}
                                     <?php
                                         if(!empty($vendorname)){

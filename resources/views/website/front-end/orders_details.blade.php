@@ -60,7 +60,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <h3>status for {{ count($orders)}} orders  </h3>
+                    <h3>status for {{ count($orders) != 0 ? count($orders) :''}} orders  </h3>
                     
                     {{-- @dd($orders_product); --}}
                     

@@ -1,7 +1,7 @@
 
  <link rel="icon" href="{{ asset('frontend_assets/images/favicon/25.png') }}" type="image/x-icon">
     <link rel="shortcut icon" href="{{ asset('frontend_assets/images/favicon/25.png')}}" type="image/x-icon">
-    <title>Oxegen Ecommerce</title>
+    <title>Trade By India</title>
 
     <!--Google font-->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">

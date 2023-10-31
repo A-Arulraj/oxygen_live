@@ -56,7 +56,7 @@
 
     <!-- header start -->
     <!--section start-->
-    <section class="cart-section section-b-space mt-5">
+    <section class=" section-b-space" style="margin-top: 10%;">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
@@ -68,7 +68,7 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table cart-table">
+                    <table class="table  no-wrap">
                         <thead>
                             <tr class="table-head">
                                 <th scope="col">S.No</th>
@@ -109,7 +109,7 @@
                                     ?>
                                 </td>
                                 <td><a href="#">{{ $details['name'] }} </a>
-                                    <div class="mobile-cart-content row">
+                                    <!-- <div class="mobile-cart-content row">
                                         <div class="col">
                                             <div class="qty-box">
                                                 <div class="input-group">
@@ -119,28 +119,28 @@
                                             </div>
                                         </div>
                                         <div class="col">
-                                            <h2 class="td-color">Rs {{ $details['price'] }}</h2>
+                                           Rs {{ $details['price'] }}
                                         </div>
                                         <div class="col">
-                                            <h2 class="td-color"><a href="#" class="icon"><i class="ti-close"></i></a>
-                                            </h2>
+                                           <a href="#" class="icon"><i class="ti-close"></i></a>
+                                            
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </td>
                                 <td>
-                                    <h2 id="product">Rs {{ $details['price'] }}</h2>
+                                    Rs {{ $details['price'] }}
                                 </td>
                                 <td>
-                                    <h2> {{ $details['size'] }}</h2>
+                                     {{ $details['size'] }}
                                 </td>
                                 <td>
-                                    <h2> {{ $details['color'] }}</h2>
+                                    {{ $details['color'] }}
                                 </td>
                                 <td>
                                     <div class="qty-box">
-                                        <div class="input-group">
-                                            <div class="input-group">
-                                                 <span class="input-group-btn">
+                                        
+                                            <div class="input-group"  style="width: 70%;">
+                                                 <span class="input-group-btn" >
                                                     <button type="button" class="btn btn-danger btn-number" data-type="minus" data-field="quant[2]" onclick="addqnty('{{$details['pid']}}','Minus')" style="font-size: 15px;padding: 12px;">
                                                         <span class="fa fa-minus"></span>
                                                     </button>
@@ -150,20 +150,16 @@
                                                     <button type="button" class="btn btn-success btn-number" data-type="plus" data-field="quant[2]" onclick="addqnty('{{$details['pid']}}','Add')" style="font-size: 15px;padding: 12px;">
                                                         <span class="fa fa-plus"></span>
                                                     </button>
-                                                </span>
-        
-                                              </div>
-                                            
-                                            
-
+                                                </span>        
+                                              </div>  
                                             <!--<input type="number" name="quantity" class="form-control input-number"-->
                                             <!--    value="{{ $details['qty'] }}">-->
-                                        </div>
+                                        
                                     </div>
                                 </td>
                                 <td><a href="#" class="icon" onclick="deletecart({{$details['pid']}})"><i class="ti-close"></i></a></td>
                                 <td>
-                                    <h2 id="out" class="td-color">Rs {{ $totaldetails = (int)$details['price'] * (int)$details['qty'] }}</h2>
+                                    <strong id="out" class="td-color">Rs {{ $totaldetails = (int)$details['price'] * (int)$details['qty'] }}</strong>
                                 <?php
                                  $totaldt += $totaldetails;
                                 ?>
@@ -177,39 +173,42 @@
                                 </td>
                             </tr>
                             @endif
-                        </tbody>
-                        
-                        
-                    </table>
-                    <div class="table-responsive-md">
-                        <table class="table cart-table ">
+                        </tbody>                                         
                             <tfoot>
                                 <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
                                     <td>total price :</td>
                                     <td>
-                                        <h2>Rs.{{ $totaldt }}</h2>
+                                        <h5>Rs.{{ $totaldt }}</h5>
                                     </td>
                                 </tr>
                             </tfoot>
                         </table>
+                        <div class="table-responsive-md"> 
                     </div>
                 </div>
             </div>
-            <div class="row cart-buttons">
+            <div class="row">
                 <?php
                 $se = session('username');
-                // @dd($se);
-                // {{-- FacadesSession::put('username', $data['username']);
-                // FacadesSession::put('userId', $userId);
-                // FacadesSession::put('level', $userLevel); --}}
-                    ?>
-                <div class="col-6"><a href="{{ url('/') }}" class="btn btn-solid">continue shopping</a></div>
+                ?>
+                <div class="col-md-6">
+                    <a href="{{ url('/') }}" class="btn btn-solid">Continue Shopping</a>
+                </div>
                 @if(!empty(session('userId')))
-                
-                <div class="col-6"><a href="{{ route('checkout') }}" class="btn btn-solid">CheckOut</a></div>
+                <div class="col-md-6 text-right">
+                    <a href="{{ route('checkout') }}" class="btn btn-solid float-right">Checkout</a>
+                </div>
                 @else
-                
-                <div class="col-6"><a href="{{ route('checklogin') }}" class="btn btn-solid">Login to Continue...</a></div>
+                <div class="col-md-6 text-right">
+                    <a href="{{ route('checklogin') }}" class="btn btn-solid">Login to Continue...</a>
+                </div>
                 @endif
             </div>
         </div>
